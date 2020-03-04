@@ -59,9 +59,9 @@ const Header = ({about, projects, time}) => {
         <p>
           {(time.getHours() % 12 === 0) ? 12 : (time.getHours() % 12) }
           <span className='punc'>:</span>
-          {time.getMinutes().toString().padStart(0, 2)}
+          {time.getMinutes().toString().padStart(2, 0)}
           <span className='punc'>:</span>
-          {time.getSeconds().toString().padStart(0, 2)}
+          {time.getSeconds().toString().padStart(2, 0)}
           <br />
           Brooklyn<span className='punc'>,</span> New York
         </p>
