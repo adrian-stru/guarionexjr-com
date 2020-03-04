@@ -1,24 +1,24 @@
 import React from 'react'
 import Header from './header'
+import SEO from './seo'
+import Footer from './footer'
+import {BaseStyle} from '../styles'
+import * as S from './layout.style'
 
-import '../styles/layout.css'
-import styles from './layout.module.css'
-
-const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle}) => (
-  <>
-    <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <div className={styles.content}>{children}</div>
-    <footer className={styles.footer}>
-      <div className={styles.footerWrapper}>
-        <div className={styles.siteInfo}>
-          &copy; {new Date().getFullYear()}, Built with <a href='https://www.sanity.io'>Sanity</a>{' '}
-          &amp;
-          {` `}
-          <a href='https://www.gatsbyjs.org'>Gatsby</a>
-        </div>
-      </div>
-    </footer>
-  </>
+const Layout = ({site, seoTitle, projects, children, time}) => (
+  <S.StyledLayout>
+    <BaseStyle time={time} />
+    <SEO
+      title={seoTitle}
+      description={site.description}
+      keywords={site.keywords} />
+    <Header
+      time={time}
+      about={site._rawAbout}
+      projects={projects} />
+    {children}
+    <Footer />
+  </S.StyledLayout>
 )
 
 export default Layout
