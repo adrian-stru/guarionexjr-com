@@ -1,10 +1,8 @@
 import React from 'react'
-import Figure from './Figure'
 
 const serializers = {
-  types: {
-    authorReference: ({node}) => <span>{node.author.name}</span>,
-    mainImage: Figure
+  marks: {
+    blink: (props) => <span className='punc'>{props.children}</span>
   }
 }
 
