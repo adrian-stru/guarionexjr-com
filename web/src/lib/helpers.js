@@ -43,13 +43,9 @@ export function toPlainText (blocks) {
     .join('\n\n')
 }
 
-export const getWidth = () => {
-  if (typeof window === `undefined`) return null
-
-  return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth  
-}
-
 export function useCurrentWidth () {
+  const getWidth = () => window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+
   let [width, setWidth] = useState(getWidth())
 
   useEffect(() => {
