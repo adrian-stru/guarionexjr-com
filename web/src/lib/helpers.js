@@ -44,21 +44,28 @@ export function toPlainText (blocks) {
 }
 
 export function useCurrentWidth () {
-  const getWidth = () => window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+  let [hasLoaded, setHasLoaded] = useState(false)
+  let [width, setWidth] = useState(0)
 
-  let [width, setWidth] = useState(getWidth())
+  const getWidth = () => {
+    return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+  }
 
   useEffect(() => {
     const resizeListener = () => {
       setWidth(getWidth())
     }
 
+    if (!hasLoaded) {
+      setHasLoaded(true)
+      resizeListener()
+    }
     window.addEventListener('resize', resizeListener)
 
     return () => {
       window.removeEventListener('resize', resizeListener)
     }
-  }, [])
+  }, [width])
 
   return width
 }
