@@ -7,13 +7,20 @@ export default ({node}) => {
   if (!node || !node.asset || !node.asset._id) { return null }
   const fluidProps = getFluidGatsbyImage(
     node.asset._id,
-    {maxWidth: 675},
+    {
+      maxWidth: 1500
+    },
     clientConfig.sanity
   )
+
   return (
     <figure>
-      <Img fluid={fluidProps} alt={node.alt} />
-      <figcaption>{node.caption}</figcaption>
+      <Img
+        fluid={fluidProps}
+        alt={node.alt}
+        fadeIn
+        backgroundColor
+        durationFadeIn={750} />
     </figure>
   )
-}
+} 

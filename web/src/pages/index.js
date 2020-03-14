@@ -133,6 +133,10 @@ const IndexPage = props => {
   const [scrollY, setScrollY] = useState(0)
   const context = {activeSection, setActiveSection}
 
+  const [activeSection, setActiveSection] = useState(null) /* (projects) ? projects[0].slug.current : null */
+  const [scrollY, setScrollY] = useState(0)
+  const context = {activeSection, setActiveSection}
+
   if (!site) {
     throw new Error(
       'Missing "Site settings". Open the studio and add content.'
