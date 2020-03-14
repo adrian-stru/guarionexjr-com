@@ -6,7 +6,7 @@ const {device} = theme
 
 const Wrapper = styled.div`
   width: 100%;
-  overflow: hidden;
+  overflow-y: scroll;
 `
 
 // Common

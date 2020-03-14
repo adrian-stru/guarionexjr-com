@@ -1,7 +1,7 @@
 export default {
-  name: 'siteSettings',
+  name: 'seo',
   type: 'document',
-  title: 'Site Settings',
+  title: 'SEO',
   __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
   fields: [
     {
@@ -24,21 +24,6 @@ export default {
       options: {
         layout: 'tags'
       }
-    },
-    {
-      name: 'about',
-      type: 'blinkBlock'
-    },
-    {
-      name: 'uMargin',
-      title: 'Universal Margin',
-      type: 'number'
-    },
-    {
-      name: 'fontFiles',
-      title: 'Font Files',
-      type: 'array',
-      of: [{type: 'file'}]
     }
   ]
 }

@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Relative-Faux';
+    src: url('relative-faux.eot');
+    src: url('relative-faux.eot?#iefix') format('embedded-opentype'),
+         url('relative-faux.woff2') format('woff2'),
+         url('relative-faux.woff') format('woff'),
+         url('relative-faux.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Relative-Book-Italic';
+    src: url('relative-book-italic.eot');
+    src: url('relative-book-italic?#iefix') format('embedded-opentype'),
+         url('relative-book-italic.woff2') format('woff2'),
+         url('relative-book-italic.woff') format('woff'),
+         url('relative-book-italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}

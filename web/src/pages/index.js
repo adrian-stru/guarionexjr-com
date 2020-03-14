@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import {graphql} from 'gatsby'
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture,
-  useCurrentNYTime
+  useScroll
 } from '../lib/helpers'
+import {useScrollPosition} from '../lib/useScrollPosition'
 import GraphQLErrorList from '../components/graphql-error-list'
 import Layout from '../components/layout'
 import Project from '../components/project'
@@ -34,12 +35,24 @@ query IndexPageQuery {
           caption
           highlight
           asset {
+            _id
+            id
             url
             metadata {
               dimensions {
                 height
                 width
                 aspectRatio
+              }
+              palette {
+                dominant {
+                  background
+                  title
+                }
+                darkVibrant {
+                  background
+                  title
+                }
               }
             }
           }
@@ -59,11 +72,22 @@ query IndexPageQuery {
       asset {
         url
         id
+        _id
         metadata {
           dimensions {
             height
             width
             aspectRatio
+          }
+          palette {
+            dominant {
+              background
+              title
+            }
+            darkVibrant {
+              background
+              title
+            }
           }
         }
       }
@@ -75,12 +99,20 @@ query IndexPageQuery {
     }
     _rawDescription
   }
+  details: sanityDetails(_id: {}, id: {eq: "294ffb7d-4c4b-564e-a212-b9eebee4c919"}) {
+    id
+    _rawAbout
+    _rawContact
+    _rawCv
+    _rawSecondary
+  }
 }
 `
 
+export const Context = React.createContext()
+
 const IndexPage = props => {
   const {data, errors} = props
-
   if (errors) {
     return (
       <Layout>
@@ -95,7 +127,11 @@ const IndexPage = props => {
       .filter(filterOutDocsWithoutSlugs)
       .filter(filterOutDocsPublishedInTheFuture)
     : []
-  const selectedWorks = data.selectedWorks || {}
+  const selectedWorks = (data || {}).selectedWorks
+  const details = (data || {}).details
+  const [activeSection, setActiveSection] = useState(null) /* (projects) ? projects[0].slug.current : null */
+  const [scrollY, setScrollY] = useState(0)
+  const context = {activeSection, setActiveSection}
 
   if (!site) {
     throw new Error(
@@ -103,24 +139,35 @@ const IndexPage = props => {
     )
   }
 
+  useScrollPosition(({prevPos, currPos}) => {
+    setScrollY(currPos.y)
+  }, undefined, undefined, true, 125)
+
   return (
-    <Layout
-      time={useCurrentNYTime()}
-      site={site}
-      projects={projects || []}
-      seoTitle={site.title} >
-      {projects.map((project) => (
-        <Project
-          key={project.id}
-          title={project.title}
-          slug={project.slug.current}
-          images={project.images}
-          description={project._rawDescription} />
-      ))}
-      <SelectedWorks
-        images={selectedWorks.images || []}
-        description={selectedWorks._rawDescription || []} />
-    </Layout>
+    <Context.Provider
+      value={context}>
+      <Layout
+        site={site}
+        details={details}
+        projects={projects}
+        seoTitle={site.title}
+        scrollY={scrollY}>
+        {projects.map((project) => (
+          <Project
+            scrollY={scrollY}
+            key={project.id}
+            title={project.title}
+            slug={project.slug.current}
+            images={project.images}
+            description={project._rawDescription} />
+        ))}
+        <SelectedWorks
+          scrollY={scrollY}
+          slug='selectedWorks'
+          images={selectedWorks.images}
+          description={selectedWorks._rawDescription} />
+      </Layout>
+    </Context.Provider>
   )
 }
 

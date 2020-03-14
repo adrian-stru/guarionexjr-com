@@ -82,3 +82,27 @@ export function useCurrentNYTime () {
 
   return time
 }
+
+export function useCurrentTime () {
+  const [time, setTime] = useState(new Date())
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(new Date(), 10000))
+    return () => {
+      clearInterval(id)
+    }
+  }, [])
+
+  return time
+}
+
+export function getDimensions (el) {
+  const {height} = el.getBoundingClientRect()
+  const offsetTop = el.offsetTop
+  const offsetBottom = el.offsetTop + height
+  return {
+    height,
+    offsetTop,
+    offsetBottom
+  }
+}

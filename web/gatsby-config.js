@@ -4,13 +4,15 @@ require('dotenv').config({
 })
 
 const clientConfig = require('./client-config')
-
+const path = require(`path`)
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   plugins: [
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-source-sanity',
       options: {
@@ -24,6 +26,15 @@ module.exports = {
       resolve: 'gatsby-plugin-styled-components',
       options: {
         displayName: false
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        custom: {
+          families: ['Relative-Faux, Relative-Book-Italic'],
+          urls: ['/fonts/fonts.css']
+        }
       }
     }
   ]

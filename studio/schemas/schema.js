@@ -8,6 +8,8 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import siteSettings from './documents/siteSettings'
 import project from './documents/project'
 import selectedWorks from './documents/selectedWorks'
+import seo from './documents/seo'
+import details from './documents/details'
 
 // Object types
 import projectImage from './objects/projectImage'
@@ -17,7 +19,7 @@ import blinkBlock from './objects/blinkBlock'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
-  name: 'blog',
+  name: 'portfolio',
   // Then proceed to concatenate our our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
@@ -26,6 +28,8 @@ export default createSchema({
     siteSettings,
     project,
     selectedWorks,
+    seo,
+    details,
     projectImage,
     selectedWorkImage,
     blinkBlock

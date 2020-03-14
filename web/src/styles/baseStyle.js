@@ -1,19 +1,6 @@
 import {createGlobalStyle} from 'styled-components'
 import theme from './theme'
-const {colors, fontSizes, fonts} = theme
-
-function timeToFontColor (time) {
-  const hours = time.getHours()
-  return (hours >= 8 && hours <= 16) ? 'black' : 'white'
-}
-
-function timeToBackgroundColor (time) {
-  const totalMinutes = (time.getHours() * 60) + time.getMinutes()
-  const whiteOffset = (totalMinutes < 720) ? totalMinutes : 1440 - totalMinutes
-  const rgbVal = (whiteOffset * 255) / 720
-
-  return `rgb(${rgbVal}, ${rgbVal}, ${rgbVal})`
-}
+import config from './config'
 
 const BaseStyle = createGlobalStyle`
     html {
@@ -33,9 +20,7 @@ const BaseStyle = createGlobalStyle`
         width: 100%;
         height: 100%;
         max-width: 100%;
-        background-color: ${props => (timeToBackgroundColor(props.time))};
-        color: ${props => (timeToFontColor(props.time))};
-        font-family: ${fonts.sans};
+        font-family: ${theme.fonts.sans};
         font-size: 18px;
     }
     h1, h2, h3, h4, h5, h6 {
@@ -47,14 +32,32 @@ const BaseStyle = createGlobalStyle`
         text-decoration: none;
         color: inherit;
         cursor: pointer;
+        :hover {
+            opacity: .33;
+        }
+        transition: opacity .5s;
+    }
+    p {
+    
     }
     image {
         width: 100%;
         height: auto;
     }
+    figure {
+        margin: 0;
+    }
 
-    .punc {
-        opacity: ${props => (props.time.getSeconds() % 2 === 0) ? 1 : 0};
+    .blink {
+        animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+        0% {opacity: 1;}
+        59% {opacity: 1;}
+        60% {opacity: 0;}
+        99% {opacity: 1;}
+        100% {opacity: 1;}
     }
 `
 

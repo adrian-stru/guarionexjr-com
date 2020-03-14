@@ -2,15 +2,9 @@ const theme = {
   colors: {
     black: '#000',
     white: '#fff',
-    navyLight: 'rgb(191, 203, 217)',
-    navy: 'rgb(48, 65, 86)',
-    navyDarker: '#1f2d3d',
-    grayLight: '#f4f7fb',
-    link: '#3d70b2',
-    linkHover: '##5596'
   },
   fonts: {
-    sans: "'Lora', sans-serif",
+    sans: "'Relative-Faux', 'Lora', sans-serif",
     serif: { },
     mono: { }
   },

@@ -2,7 +2,7 @@ import React from 'react'
 
 const serializers = {
   marks: {
-    blink: (props) => <span className='punc'>{props.children}</span>
+    blink: (props) => <span className='blink'>{props.children}</span>
   }
 }
 

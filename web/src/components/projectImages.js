@@ -1,4 +1,5 @@
 import React from 'react'
+import ProjectImage from './projectImage'
 import {useCurrentWidth} from '../lib/helpers'
 import * as S from './projectImages.style'
 import {config} from '../styles'
@@ -46,7 +47,7 @@ const SingleImage = ({image, clientWidth}) => {
     <S.Row>
       <S.ImageWrap
         hotspot={image.hotspot}>
-        <img src={image.asset.url} />
+        <ProjectImage image={image} />
       </S.ImageWrap>
     </S.Row>
   )
@@ -63,13 +64,13 @@ const DoubleImage = ({leftImage, rightImage, clientWidth}) => {
         <S.FlexBox>
           <S.ImageWrap
             hotspot={leftImage.hotspot}>
-            <img src={leftImage.asset.url} />
+            <ProjectImage image={leftImage} />
           </S.ImageWrap>
         </S.FlexBox>
         <S.FlexBox>
           <S.ImageWrap
             hotspot={rightImage.hotspot}>
-            <img src={rightImage.asset.url} />
+            <ProjectImage image={rightImage} />
           </S.ImageWrap>
         </S.FlexBox>
       </S.FlexWrap>

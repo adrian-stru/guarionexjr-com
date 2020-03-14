@@ -1,11 +1,12 @@
 import React from 'react'
 import gsap from 'gsap'
+import PortableText from './portableText'
 import {ScrollToPlugin} from 'gsap/all'
 import * as S from './footer.style'
 
 gsap.registerPlugin(ScrollToPlugin)
 
-const Footer = () => {
+const Footer = ({cv}) => {
   function handleClick (e) {
     e.preventDefault()
 
@@ -17,8 +18,20 @@ const Footer = () => {
 
   return (
     <S.Wrapper>
-      <a href='#' onClick={handleClick}>Back to top <span className='punc'>&#8593;</span></a>
-      <div>All works <span className='punc'>&copy;</span> Guarionex Rodriguez<span className='punc'>,</span> Jr<span className='punc'>.</span></div>
+      <div></div>
+      <div>
+        <div id='cv'>
+          <PortableText blocks={cv}/>
+        </div>
+        <a
+          href='#'
+          onClick={handleClick}>
+            Back to top <span className='blink'>&#8593;</span>
+        </a>
+        <div>
+          All works <span className='blink'>&copy;</span> Guarionex Rodriguez<span className='blink'>,</span> Jr<span className='blink'>.</span>
+        </div>
+      </div>
     </S.Wrapper>
   )
 }

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import {theme, config} from '../styles'
 
 const ProjectWrapper = styled.article`
-  overflow: hidden;
+  overflow-y: scroll;
   margin-bottom: 50px;
 `
 
@@ -12,7 +13,12 @@ const ProjectTitle = styled.h2`
 `
 
 const ProjectDescriptionWrap = styled.div`
-  margin-bottom: 30px;
+  display: grid;
+
+  @media ${theme.device.lg} {
+    grid-template-columns: 1fr 1fr;
+    column-gap: ${config.universalPadding.lg};
+  }
 `
 
 export {ProjectWrapper, ProjectTitle, ProjectDescriptionWrap}
