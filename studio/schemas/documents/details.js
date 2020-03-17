@@ -2,7 +2,7 @@ export default {
   name: 'details',
   type: 'document',
   title: 'Details',
-  __experimental_actions: ['update', /* 'create','delete', */ 'publish'],
+  __experimental_actions: ['update', 'create', /* 'delete', */ 'publish'],
   fields: [
     {
       name: 'about',
@@ -23,6 +23,6 @@ export default {
       name: 'cv',
       title: 'CV',
       type: 'blinkBlock'
-    },
+    }
   ]
 }

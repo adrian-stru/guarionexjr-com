@@ -8,6 +8,14 @@ const BlinkRender = ({children}) => (
   <span style={{color: 'pink', fontWeight: 800}}>{children}</span>
 )
 
+const ItalicIcon = () => (
+  <span>&#119894;</span>
+)
+
+const ItalicRender = ({children}) => (
+  <span style={{fontStyle: 'italic'}}>{children}</span>
+)
+
 export default {
   name: 'blinkBlock',
   title: 'Blink Block',
@@ -23,6 +31,14 @@ export default {
             blockEditor: {
               icon: BlinkIcon,
               render: BlinkRender
+            }
+          },
+          {
+            title: 'Italic',
+            value: 'italic',
+            blockEditor: {
+              icon: ItalicIcon,
+              render: ItalicRender
             }
           }
         ]

@@ -7,6 +7,10 @@ import {BaseStyle} from '../styles'
 import * as S from './layout.style'
 
 const Layout = ({site, seoTitle, projects, scrollY, details, children}) => {
+  if (typeof window === 'undefined') {
+    return (<div />)
+  }
+
   const time = useCurrentNYTime()
 
   return (
@@ -16,17 +20,17 @@ const Layout = ({site, seoTitle, projects, scrollY, details, children}) => {
       <SEO
         title={seoTitle}
         description={site.description}
-        keywords={site.keywords}/>
+        keywords={site.keywords} />
       <Header
         scrollY={scrollY}
         about={details._rawAbout}
         secondary={details._rawSecondary}
         contact={details._rawContact}
-        projects={projects}/>
-          {children}
+        projects={projects} />
+      {children}
       <Footer
         scrollY={scrollY}
-        cv={details._rawCv}/>
+        cv={details._rawCv} />
     </S.StyledLayout>
   )
 }

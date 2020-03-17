@@ -2,12 +2,12 @@ import React from 'react'
 import ProjectImage from './projectImage'
 import {useCurrentWidth} from '../lib/helpers'
 import * as S from './projectImages.style'
-import {config} from '../styles'
+import {theme} from '../styles'
 
 const ProjectImages = ({images}) => {
   const ordering = []
-
-  let width = useCurrentWidth()
+  const {width, imageHeight} = useCurrentWidth()
+  const imageBottomMargin = imageHeight / 8
 
   let leftImage = null
   for (const image of images) {
@@ -15,6 +15,7 @@ const ProjectImages = ({images}) => {
       ordering.push(
         <SingleImage
           image={image}
+          imageHeight={imageHeight}
           clientWidth={width} />
       )
       continue
@@ -36,45 +37,41 @@ const ProjectImages = ({images}) => {
   return (
     <S.Wrapper>
       {ordering.map(el => {
-        return el
+        return (
+          <S.Row
+            mb={imageBottomMargin}>
+            {el}
+          </S.Row>
+        )
       })}
     </S.Wrapper>
   )
 }
 
-const SingleImage = ({image, clientWidth}) => {
+const SingleImage = ({image, imageHeight}) => {
+  const {aspectRatio} = image.asset.metadata.dimensions
+  const imageWidth = aspectRatio * imageHeight
+
   return (
-    <S.Row>
-      <S.ImageWrap
-        hotspot={image.hotspot}>
-        <ProjectImage image={image} />
-      </S.ImageWrap>
-    </S.Row>
+    <S.ImageWrap
+      h={imageHeight}
+      w={imageWidth}>
+      <ProjectImage
+        image={image} />
+    </S.ImageWrap>
   )
 }
 
-const DoubleImage = ({leftImage, rightImage, clientWidth}) => {
-  const {height, width} = leftImage.asset.metadata.dimensions
-  const imageWidth = (clientWidth - config.projectGutter - ((config.sitePaddingX) * 2)) / 2
-  const imageHeight = (height * imageWidth) / width
-
+const DoubleImage = ({leftImage, rightImage}) => {
   return (
-    <S.Row h={imageHeight}>
-      <S.FlexWrap>
-        <S.FlexBox>
-          <S.ImageWrap
-            hotspot={leftImage.hotspot}>
-            <ProjectImage image={leftImage} />
-          </S.ImageWrap>
-        </S.FlexBox>
-        <S.FlexBox>
-          <S.ImageWrap
-            hotspot={rightImage.hotspot}>
-            <ProjectImage image={rightImage} />
-          </S.ImageWrap>
-        </S.FlexBox>
-      </S.FlexWrap>
-    </S.Row>
+    <S.Grid>
+      <S.ImageWrap>
+        <ProjectImage image={leftImage} />
+      </S.ImageWrap>
+      <S.ImageWrap>
+        <ProjectImage image={rightImage} />
+      </S.ImageWrap>
+    </S.Grid>
   )
 }
 

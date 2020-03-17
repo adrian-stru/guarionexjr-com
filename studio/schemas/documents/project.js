@@ -11,7 +11,7 @@ export default {
     {
       name: 'dates',
       title: 'Dates',
-      type: 'string'
+      type: 'blinkBlock'
     },
     {
       name: 'slug',

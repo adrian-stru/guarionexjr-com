@@ -5,6 +5,7 @@ import gsap from 'gsap'
 import {ScrollToPlugin} from 'gsap/all'
 import {useCurrentWidth, useCurrentNYTime, getDimensions} from '../lib/helpers'
 import * as S from './header.style'
+import {theme} from '../styles'
 
 gsap.registerPlugin(ScrollToPlugin)
 
@@ -12,7 +13,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
   const ref = useRef(null)
   const context = useContext(Context)
   const {activeSection, setActiveSection} = context
-  const width = useCurrentWidth()
+  const {imageHeight} = useCurrentWidth()
   const time = useCurrentNYTime()
   const dimensions = (ref.current) ? getDimensions(ref.current) : null
   if (dimensions && scrollY >= dimensions.offsetTop && scrollY <= dimensions.offsetBottom) {
@@ -35,118 +36,60 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
     })
   }
 
-  if (width === 0 || typeof(window) === undefined) {
-    return (
-      <div>
-        ...loading
-      </div>
-    )
-  }
-
-  const lineHeight = 23
-
-  if (width < 576) {
-    return (
-      <div
-        ref={ref}>
+  return (
+    <S.Grid
+      mb={(imageHeight / 4) - 22}
+      ref={ref}>
+      <S.GridColumn>
+        <S.Fixed>
+          {projects.map((project) => (
+            <S.NavItem
+              className={(activeSection === project.slug.current) ? 'blink no-underline italic' : 'no-underline italic'}
+              href='#'
+              key={project.id}
+              onClick={(e) => handleNavItemClick(`project-${project.slug.current}`, e)}>
+              {project.title}
+            </S.NavItem>
+          ))}
+          <S.NavItem
+            className={(activeSection === 'selectedWorks') ? 'blink no-underline italic' : 'no-underline italic'}
+            href='#'
+            onClick={(e) => handleNavItemClick('selected-works', e)}>
+            Selected Works
+          </S.NavItem>
+        </S.Fixed>
+        <S.NotFixed
+          marginTop={`calc(${(projects.length + 2) * (theme.padding.basePx * 2)}px)`}>
+          <PortableText blocks={secondary} />
+        </S.NotFixed>
+      </S.GridColumn>
+      <S.GridColumn>
         <S.Fixed>
           <div>Guarionex Rodriguez<span className='blink'>,</span> Jr<span className='blink'>.</span></div>
-          <br/>
-          {projects.map((project) => (
-              <S.NavItem
-                className={(activeSection === project.slug.current) ? 'blink' : null}
-                href='#'
-                key={project.id}
-                onClick={(e) => handleNavItemClick(`project-${project.slug.current}`, e)}>
-                {project.title}
-              </S.NavItem>
-            ))}
-            <S.NavItem
-              className={(activeSection === 'selectedWorks') ? 'blink' : null}
-              href='#'
-              onClick={(e) => handleNavItemClick('selected-works', e)}>
-              Selected Works
-            </S.NavItem>
         </S.Fixed>
-        <S.NotFixed marginTop={`calc(${(projects.length + 3) * lineHeight}px + 1em)`}>
-          <PortableText blocks={secondary} />
-          <p>
+        <S.NotFixed marginTop={theme.margin.base}>
+          <div>
             {(time.getHours() % 12 === 0) ? 12 : (time.getHours() % 12) }
-              <span className='blink'>:</span>
-              {time.getMinutes().toString().padStart(2, 0)}
-              <span className='blink'>:</span>
-              {time.getSeconds().toString().padStart(2, 0)}
-              {(time.getHours() >= 12) ? 'PM' : 'AM'}
-              <br />
-              Brooklyn<span className='blink'>,</span> New York
-          </p>
+            <span className='blink'>:</span>
+            {time.getMinutes().toString().padStart(2, 0)}
+            <span className='blink'>:</span>
+            {time.getSeconds().toString().padStart(2, 0)}
+            {(time.getHours() >= 12) ? 'PM' : 'AM'}
+            <br />
+            Brooklyn<span className='blink'>,</span> New York
+          </div>
           <PortableText blocks={about} />
           <p>
             <S.NavItem
-              href='#'
+              className='no-underline'
               onClick={(e) => handleNavItemClick('cv', e)}>
-              View Partial CV <span className='blink'>&darr;</span>
+              <span className='blink'>&darr;</span> view CV
             </S.NavItem>
           </p>
           <PortableText blocks={contact} />
         </S.NotFixed>
-      </div>
-    )
-  }
-
-  return (
-    <S.Grid
-      ref={ref}>
-        <S.GridColumn>
-          <S.Fixed>
-            {projects.map((project) => (
-              <S.NavItem
-                className={(activeSection === project.slug.current) ? 'blink' : null}
-                href='#'
-                key={project.id}
-                onClick={(e) => handleNavItemClick(`project-${project.slug.current}`, e)}>
-                {project.title}
-              </S.NavItem>
-            ))}
-            <S.NavItem
-              className={(activeSection === 'selectedWorks') ? 'blink' : null}
-              href='#'
-              onClick={(e) => handleNavItemClick('selected-works', e)}>
-              Selected Works
-            </S.NavItem>
-          </S.Fixed>
-          <S.NotFixed 
-            marginTop={`calc(${(projects.length + 1) * lineHeight}px + 1em)`}>
-            <PortableText blocks={secondary} />
-          </S.NotFixed>
-        </S.GridColumn>
-        <S.GridColumn>
-          <S.Fixed>
-            <div>Guarionex Rodriguez<span className='blink'>,</span> Jr<span className='blink'>.</span></div>
-          </S.Fixed>
-          <S.NotFixed marginTop={`1em`}>
-            <div>
-              {(time.getHours() % 12 === 0) ? 12 : (time.getHours() % 12) }
-              <span className='blink'>:</span>
-              {time.getMinutes().toString().padStart(2, 0)}
-              <span className='blink'>:</span>
-              {time.getSeconds().toString().padStart(2, 0)}
-              {(time.getHours() >= 12) ? 'PM' : 'AM'}
-              <br />
-              Brooklyn<span className='blink'>,</span> New York
-            </div>
-            <PortableText blocks={about} />
-            <p>
-              <S.NavItem
-                href='#'
-                onClick={(e) => handleNavItemClick('cv', e)}>
-                View Partial CV <span className='blink'>&darr;</span>
-              </S.NavItem>
-            </p>
-            <PortableText blocks={contact} />
-          </S.NotFixed>
-        </S.GridColumn>
-    </S.Grid> 
+      </S.GridColumn>
+    </S.Grid>
   )
 }
 

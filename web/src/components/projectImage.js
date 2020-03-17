@@ -8,7 +8,7 @@ const ProjectImage = ({image}) => {
   const fluidProps = getFluidGatsbyImage(
     image.asset._id,
     {
-      maxWidth: 1500
+      maxWidth: 3000
     },
     clientConfig.sanity
   )

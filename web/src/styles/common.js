@@ -1,23 +1,29 @@
 import styled from 'styled-components'
-import {theme, config} from '../styles'
+import {theme} from '../styles'
 
 const ProjectWrapper = styled.article`
   overflow-y: scroll;
-  margin-bottom: 50px;
+  margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
 `
 
 const ProjectTitle = styled.h2`
-  font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 10px;
+  font-family: 'Relative-Book-Italic';
+  margin: 0;
+  font-size: 14px;
+  @media ${theme.device.sm} {
+    font-size: 18px;
+  }
 `
 
 const ProjectDescriptionWrap = styled.div`
   display: grid;
+  p {
+    margin: 0;
+  }
 
-  @media ${theme.device.lg} {
+  @media ${theme.device.md} {
     grid-template-columns: 1fr 1fr;
-    column-gap: ${config.universalPadding.lg};
+    column-gap: ${theme.padding.base};
   }
 `
 

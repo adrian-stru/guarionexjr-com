@@ -1,5 +1,6 @@
-import {format, isFuture} from 'date-fns'
 import {useState, useEffect} from 'react'
+import {format, isFuture} from 'date-fns'
+import {theme} from '../styles'
 
 export function cn (...args) {
   return args.filter(Boolean).join(' ')
@@ -67,7 +68,10 @@ export function useCurrentWidth () {
     }
   }, [width])
 
-  return width
+  return {
+    width,
+    imageHeight: (5 * ((width - theme.padding.basePx) / 2)) / 4
+  }
 }
 
 export function useCurrentNYTime () {

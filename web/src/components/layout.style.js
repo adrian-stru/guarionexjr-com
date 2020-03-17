@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import {config, theme} from '../styles'
+import {theme} from '../styles'
 
 const StyledLayout = styled.div`
   width: 100%;
   height: 100%;
-  padding: ${config.universalPadding.initial};
   background: ${props => (props.time) ? timeToBackgroundColor(props.time) : null};
   color: ${props => (props.time) ? timeToFontColor(props.time) : null};
+  padding: ${theme.padding.base};
 `
 
 function timeToFontColor (time) {

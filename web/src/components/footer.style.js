@@ -1,17 +1,24 @@
 import styled from 'styled-components'
-import {theme, config} from '../styles'
+import {theme} from '../styles'
 
-const Wrapper = styled.div`
+const Grid = styled.div`
   display: grid;
-
-  @media ${theme.device.lg} {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 20px;
-  }
-
-  div {
-    padding: 125px 0;
-  }
+  grid-template-columns: 1fr 1fr;
+  column-gap: ${theme.padding.base};
+  margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
 `
 
-export {Wrapper}
+const GridItem = styled.div``
+
+const CvWrapper = styled.div`
+  hyphens: auto;
+  margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
+`
+
+const BackToTopWrapper = styled.a`
+  cursor: pointer;
+  display: block;
+  margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
+`
+
+export {Grid, GridItem, CvWrapper, BackToTopWrapper}

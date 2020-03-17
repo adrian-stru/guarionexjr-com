@@ -66,7 +66,7 @@ query IndexPageQuery {
       }
     }
   }
-  selectedWorks: sanitySelectedWorks(id: {eq: "be1a2d2c-d4c5-589b-872b-dde247761dbe"}) {
+  selectedWorks: sanitySelectedWorks(_id: {eq: "selectedWorks"}) {
     images {
       caption
       asset {
@@ -99,12 +99,17 @@ query IndexPageQuery {
     }
     _rawDescription
   }
-  details: sanityDetails(_id: {}, id: {eq: "294ffb7d-4c4b-564e-a212-b9eebee4c919"}) {
+  details: sanityDetails(_id: {eq: "details"}) {
     id
     _rawAbout
     _rawContact
     _rawCv
     _rawSecondary
+  }
+  seo: sanitySeo(_id: {eq: "seo"}) {
+    title
+    description
+    keywords
   }
 }
 `
@@ -129,10 +134,6 @@ const IndexPage = props => {
     : []
   const selectedWorks = (data || {}).selectedWorks
   const details = (data || {}).details
-  const [activeSection, setActiveSection] = useState(null) /* (projects) ? projects[0].slug.current : null */
-  const [scrollY, setScrollY] = useState(0)
-  const context = {activeSection, setActiveSection}
-
   const [activeSection, setActiveSection] = useState(null) /* (projects) ? projects[0].slug.current : null */
   const [scrollY, setScrollY] = useState(0)
   const context = {activeSection, setActiveSection}

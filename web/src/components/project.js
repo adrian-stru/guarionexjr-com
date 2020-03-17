@@ -3,7 +3,8 @@ import PortableText from './portableText'
 import ProjectImages from './projectImages'
 import * as S from '../styles/common'
 import {Context} from '../pages/index'
-import {getDimensions} from '../lib/helpers'
+import {getDimensions, useCurrentWidth} from '../lib/helpers'
+import {theme} from '../styles'
 
 const Project = ({title, images, slug, description, scrollY}) => {
   const ref = useRef(null)
@@ -13,16 +14,20 @@ const Project = ({title, images, slug, description, scrollY}) => {
     setActiveSection(slug)
   }
 
+  const {imageHeight} = useCurrentWidth()
+  const marginBottom = imageHeight / 4
+
   return (
     <S.ProjectWrapper
       ref={ref}
-      id={`project-${slug}`}>
+      id={`project-${slug}`}
+      mb={marginBottom}>
       <ProjectImages
-        images={images}/>
+        images={images} />
       <S.ProjectTitle>{title}</S.ProjectTitle>
       <S.ProjectDescriptionWrap>
         <PortableText
-          blocks={description}/>
+          blocks={description} />
       </S.ProjectDescriptionWrap>
     </S.ProjectWrapper>
   )

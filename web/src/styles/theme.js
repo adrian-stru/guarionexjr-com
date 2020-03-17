@@ -1,7 +1,14 @@
 const theme = {
   colors: {
     black: '#000',
-    white: '#fff',
+    white: '#fff'
+  },
+  margin: {
+    base: '22px'
+  },
+  padding: {
+    base: '11px',
+    basePx: 11
   },
   fonts: {
     sans: "'Relative-Faux', 'Lora', sans-serif",

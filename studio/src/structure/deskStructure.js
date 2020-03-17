@@ -1,8 +1,9 @@
 import S from '@sanity/desk-tool/structure-builder'
-import MdSettings from 'react-icons/lib/md/settings'
 import {
   MdMonochromePhotos,
-  MdCameraRoll
+  MdCameraRoll,
+  MdSearch,
+  MdBrush
 } from 'react-icons/lib/md'
 import IframePreview from '../previews/IframePreview'
 
@@ -47,16 +48,6 @@ export default () =>
     .title('Content')
     .items([
       S.listItem()
-        .title('Settings')
-        .icon(MdSettings)
-        .child(
-          S.editor()
-            .id('siteSettings')
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
-        ),
-      S.divider(),
-      S.listItem()
         .title('Projects')
         .icon(MdCameraRoll)
         .schemaType('project')
@@ -71,12 +62,35 @@ export default () =>
             .documentId('selectedWorks')
             .title('Selected Works')
         ),
+      S.divider(),
+      S.listItem()
+        .title('Details')
+        .icon(MdBrush)
+        .schemaType('details')
+        .child(
+          S.editor()
+            .schemaType('details')
+            .id('details')
+            .title('Details')
+            .documentId('details')
+        ),
+      S.listItem()
+        .title('Seo')
+        .icon(MdSearch)
+        .schemaType('seo')
+        .child(
+          S.editor()
+            .schemaType('seo')
+            .id('seo')
+            .title('SEO')
+            .documentId('seo')
+        ),
       // `S.documentTypeListItems()` returns an array of all the document types
       // defined in schema.js. We filter out those that we have
       // defined the structure above.
       ...S.documentTypeListItems().filter(
         listItem =>
-          !['siteSettings', 'selectedWorks', 'project'].includes(
+          !['siteSettings', 'selectedWorks', 'project', 'details', 'seo'].includes(
             listItem.getId()
           )
       )

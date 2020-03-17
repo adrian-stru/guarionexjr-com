@@ -21,7 +21,14 @@ const BaseStyle = createGlobalStyle`
         height: 100%;
         max-width: 100%;
         font-family: ${theme.fonts.sans};
-        font-size: 18px;
+        font-size: 14px;
+        @media ${theme.device.sm} {
+            font-size: 18px;
+        }
+        line-height: 22px;
+    }
+    div {
+        line-height: 22px;
     }
     h1, h2, h3, h4, h5, h6 {
         letter-spacing: -.025em;
@@ -29,7 +36,7 @@ const BaseStyle = createGlobalStyle`
         font-weight: 700;
     }
     a {
-        text-decoration: none;
+        text-decoration: underline;
         color: inherit;
         cursor: pointer;
         :hover {
@@ -38,7 +45,8 @@ const BaseStyle = createGlobalStyle`
         transition: opacity .5s;
     }
     p {
-    
+        margin-block-start: 22px;
+        margin-block-end: 22px;
     }
     image {
         width: 100%;
@@ -46,6 +54,14 @@ const BaseStyle = createGlobalStyle`
     }
     figure {
         margin: 0;
+    }
+
+    .no-underline {
+        text-decoration: none;
+    }
+
+    .italic {
+        font-family: 'Relative-Book-Italic'
     }
 
     .blink {
@@ -59,6 +75,8 @@ const BaseStyle = createGlobalStyle`
         99% {opacity: 1;}
         100% {opacity: 1;}
     }
+
+
 `
 
 export default BaseStyle
