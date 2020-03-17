@@ -134,7 +134,7 @@ const IndexPage = props => {
     : []
   const selectedWorks = (data || {}).selectedWorks
   const details = (data || {}).details
-  const [activeSection, setActiveSection] = useState(null) /* (projects) ? projects[0].slug.current : null */
+  const [activeSection, setActiveSection] = useState(null)
   const [scrollY, setScrollY] = useState(0)
   const context = {activeSection, setActiveSection}
 
@@ -148,31 +148,39 @@ const IndexPage = props => {
     setScrollY(currPos.y)
   }, undefined, undefined, true, 125)
 
+  const isSSR = typeof window === 'undefined'
+
   return (
-    <Context.Provider
-      value={context}>
-      <Layout
-        site={site}
-        details={details}
-        projects={projects}
-        seoTitle={site.title}
-        scrollY={scrollY}>
-        {projects.map((project) => (
-          <Project
-            scrollY={scrollY}
-            key={project.id}
-            title={project.title}
-            slug={project.slug.current}
-            images={project.images}
-            description={project._rawDescription} />
-        ))}
-        <SelectedWorks
-          scrollY={scrollY}
-          slug='selectedWorks'
-          images={selectedWorks.images}
-          description={selectedWorks._rawDescription} />
-      </Layout>
-    </Context.Provider>
+    <>
+      {!isSSR && (
+        <React.Suspense fallback={<div />}>
+          <Context.Provider
+            value={context}>
+            <Layout
+              site={site}
+              details={details}
+              projects={projects}
+              seoTitle={site.title}
+              scrollY={scrollY}>
+              {projects.map((project) => (
+                <Project
+                  scrollY={scrollY}
+                  key={project.id}
+                  title={project.title}
+                  slug={project.slug.current}
+                  images={project.images}
+                  description={project._rawDescription} />
+              ))}
+              <SelectedWorks
+                scrollY={scrollY}
+                slug='selectedWorks'
+                images={selectedWorks.images}
+                description={selectedWorks._rawDescription} />
+            </Layout>
+          </Context.Provider>
+        </React.Suspense>
+      )}
+    </>
   )
 }
 

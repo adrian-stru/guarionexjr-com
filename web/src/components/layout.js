@@ -7,10 +7,6 @@ import {BaseStyle} from '../styles'
 import * as S from './layout.style'
 
 const Layout = ({site, seoTitle, projects, scrollY, details, children}) => {
-  if (typeof window === 'undefined') {
-    return (<div />)
-  }
-
   const time = useCurrentNYTime()
 
   return (
