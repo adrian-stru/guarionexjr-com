@@ -64,7 +64,6 @@ const SelectedWorks = ({images, description, slug, scrollY}) => {
           )
         })}
       </S.ImagesWrapper>
-      <C.ProjectTitle>Selected Works</C.ProjectTitle>
       <C.ProjectDescriptionWrap>
         <PortableText
           blocks={description} />
