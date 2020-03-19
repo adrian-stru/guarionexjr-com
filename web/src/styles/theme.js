@@ -4,6 +4,7 @@ const theme = {
     white: '#fff'
   },
   margin: {
+    sm: '18px',
     base: '22px'
   },
   padding: {

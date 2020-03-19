@@ -102,8 +102,8 @@ export function useCurrentTime () {
 
 export function getDimensions (el) {
   const {height} = el.getBoundingClientRect()
-  const offsetTop = el.offsetTop
-  const offsetBottom = el.offsetTop + height
+  const offsetTop = el.offsetTop - theme.padding.basePx
+  const offsetBottom = el.offsetTop + height + theme.padding.basePx
   return {
     height,
     offsetTop,

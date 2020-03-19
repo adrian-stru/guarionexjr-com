@@ -51,13 +51,14 @@ const SelectedWorks = ({images, description, slug, scrollY}) => {
               </S.InnerImageWrapper>
               <S.Overlay
                 active={active}
-                backgroundColor={image.asset.metadata.palette.dominant.background}>
+                backgroundColor={image.asset.metadata.palette.dominant.background}
+                onClick={clickHandler}>
                 <S.OverlayCaption>{image.caption}</S.OverlayCaption>
               </S.Overlay>
               <S.OverlayCloseButton
                 className='no-underline'
-                onClick={clickHandler}
-                active={active}>
+                active={active}
+                onClick={clickHandler}>
                 {(active) ? (<span>&times;</span>) : (<span>&#43;</span>)}
               </S.OverlayCloseButton>
             </S.OuterImageWrapper>

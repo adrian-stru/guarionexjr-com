@@ -20,7 +20,10 @@ const Fixed = styled.div`
 `
 
 const NotFixed = styled.div`
-  margin-top: ${props => (props.marginTop) ? (props.marginTop) : null};
+  margin-top: ${props => (props.mtSm) ? (props.mtSm) : null};
+  @media ${theme.device.sm} {
+    margin-top: ${props => (props.mt) ? (props.mt) : null};
+  }
   hyphens: auto;
 
   @media ${theme.device.md} {

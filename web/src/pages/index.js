@@ -1,10 +1,9 @@
-import React, {useEffect, useState, useRef} from 'react'
+import React, {useState} from 'react'
 import {graphql} from 'gatsby'
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
-  filterOutDocsPublishedInTheFuture,
-  useScroll
+  filterOutDocsPublishedInTheFuture
 } from '../lib/helpers'
 import {useScrollPosition} from '../lib/useScrollPosition'
 import GraphQLErrorList from '../components/graphql-error-list'
@@ -21,7 +20,7 @@ query IndexPageQuery {
     id
     title
   }
-  projects: allSanityProject {
+  projects: allSanityProject(sort: {fields: publishedAt, order: DESC}) {
     edges {
       node {
         title

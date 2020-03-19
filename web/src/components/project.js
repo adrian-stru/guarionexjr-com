@@ -22,7 +22,6 @@ const Project = ({title, images, slug, description, scrollY}) => {
       ref={ref}
       id={`project-${slug}`}
       mb={marginBottom}>
-      {imageHeight}
       <ProjectImages
         images={images} />
       <S.ProjectDescriptionWrap>

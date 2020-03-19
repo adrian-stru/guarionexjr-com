@@ -7,6 +7,10 @@ const ImagesWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   column-gap: ${theme.padding.base};
   row-gap: ${theme.padding.base};
+  grid-row-gap: ${theme.padding.base};
+  grid-column-gap: ${theme.padding.base};
+  grid-row-gap: ${theme.padding.base};
+  grid-column-gap: ${theme.padding.base};
   margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
 
   @media ${theme.device.md} {
@@ -26,7 +30,7 @@ const OverlayCloseButton = styled.a`
   color: white;
   z-index: 40;
   opacity: ${props => (props.active) ? 1 : 0};
-  font-size: 20px;
+  font-size: 18px;
   @media ${theme.device.sm} {
     font-size: 28px;
   }
@@ -67,14 +71,17 @@ const Overlay = styled.div`
   padding: ${theme.padding.base};
   z-index: 20;
   opacity: ${props => (props.active) ? 1 : 0};
-  transition: all 1.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 `
 
 const OverlayCaption = styled.div`
   color: white;
   padding-left: ${theme.padding.basePx * 2}px;
   hyphens: auto;
-  font-size: 18px;
+  font-size: 14px;
+  @media ${theme.device.sm} {
+    font-size: 18px;
+  }
 `
 
 export {

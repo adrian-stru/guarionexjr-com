@@ -20,7 +20,7 @@ const SelectedWorkImage = ({image}) => {
         alt={image.alt}
         fadeIn
         backgroundColor={image.asset.metadata.palette.dominant.background}
-        durationFadeIn={3000} />
+        durationFadeIn={1000} />
     </figure>
   )
 }

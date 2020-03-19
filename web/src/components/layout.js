@@ -4,6 +4,7 @@ import SEO from './seo'
 import Footer from './footer'
 import {useCurrentNYTime} from '../lib/helpers'
 import {BaseStyle} from '../styles'
+import Test from './test'
 import * as S from './layout.style'
 
 const Layout = ({site, seoTitle, projects, scrollY, details, children}) => {

@@ -1,4 +1,4 @@
-import React, {useRef, useContext} from 'react'
+import React, {useRef, useContext, useEffect} from 'react'
 import PortableText from './portableText'
 import {Context} from '../pages/index'
 import gsap from 'gsap'
@@ -22,7 +22,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
     }
   }
 
-  const handleNavItemClick  = (id, e) => {
+  const handleNavItemClick = (id, e) => {
     e.preventDefault()
     const anchor = '#' + id
 
@@ -32,7 +32,22 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
 
     gsap.to(window, {
       duration: 1,
-      scrollTo: anchor
+      scrollTo: {
+        y: anchor,
+        offsetY: theme.padding.basePx
+      }
+    })
+  }
+
+  const handleTitleClick = (e) => {
+    e.preventDefault()
+
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+        y: 0,
+        autoKill: true
+      }
     })
   }
 
@@ -55,7 +70,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
             className={(activeSection === 'selectedWorks') ? 'blink no-underline italic' : 'no-underline italic'}
             href='#'
             onClick={(e) => handleNavItemClick('selected-works', e)}>
-            Selected Works
+            Select Works
           </S.NavItem>
         </S.Fixed>
         <S.NotFixed
@@ -65,16 +80,21 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
       </S.GridColumn>
       <S.GridColumn>
         <S.Fixed>
-          <div>Guarionex Rodriguez<span className='blink'>,</span> Jr<span className='blink'>.</span></div>
+          <a className='no-underline'
+            onClick={handleTitleClick}>
+            <div>Guarionex Rodriguez<span className='blink'>,</span> Jr<span className='blink'>.</span></div>
+          </a>
         </S.Fixed>
-        <S.NotFixed marginTop={theme.margin.base}>
+        <S.NotFixed
+          mt={theme.margin.base}
+          mtSm={theme.margin.sm}>
           <div>
             {(time.getHours() % 12 === 0) ? 12 : (time.getHours() % 12) }
             <span className='blink'>:</span>
             {time.getMinutes().toString().padStart(2, 0)}
             <span className='blink'>:</span>
             {time.getSeconds().toString().padStart(2, 0)}
-            {(time.getHours() >= 12) ? 'PM' : 'AM'}
+            {(time.getHours() >= 12) ? 'pm' : 'am'} EST
             <br />
             Brooklyn<span className='blink'>,</span> New York
           </div>
