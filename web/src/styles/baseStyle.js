@@ -183,7 +183,7 @@ const BaseStyle = createGlobalStyle`
             background: rgb(0,184,155);
             background: linear-gradient(180deg, rgba(0,184,155,1) 0%, rgba(0,0,0,1) 7%, rgba(0,0,0,1) 11%, rgba(0,51,175,1) 20%, rgba(0,0,0,1) 26%, rgba(0,0,0,1) 29%, rgba(255,184,53,1) 42%, rgba(0,0,0,1) 52%, rgba(0,0,0,1) 56%, rgba(151,42,188,1) 72%, rgba(0,0,0,1) 80%, rgba(0,0,0,1) 85%, rgba(208,44,30,1) 96%, rgba(0,0,0,1) 100%);
             background-size: 100% 200%;
-            animation: movedown 5s linear infinite;
+            animation: movedown 5s linear infinite alternate;
         }
 
         @keyframes movedown {
