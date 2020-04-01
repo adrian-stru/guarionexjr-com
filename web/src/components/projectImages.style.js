@@ -4,7 +4,9 @@ const {device} = theme
 
 const Wrapper = styled.div`
   width: 100%;
-  overflow-y: scroll;
+  > div :last-child {
+    margin-bottom: ${theme.padding.base};
+  }
   @media ${theme.device.md} {
     > div :last-child {
       margin-bottom: ${theme.margin.base};
@@ -13,9 +15,9 @@ const Wrapper = styled.div`
 `
 
 const Row = styled.div`
-  margin-bottom: ${theme.padding.base};
+  margin-bottom: ${props => (props.mbBase) ? `${props.mbBase}px` : null};
   @media ${theme.device.md} {
-    margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
+    margin-bottom: ${props => (props.mediumMbBase) ? `${props.mediumMbBase}px` : null};
   }
 `
 
@@ -33,11 +35,9 @@ const ImageWrap = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  column-gap: ${theme.padding.base};
   row-gap: ${theme.padding.base};
   grid-row-gap: ${theme.padding.base};
-  grid-column-gap: ${theme.padding.base};
-  grid-row-gap: ${theme.padding.base};
+  column-gap: ${theme.padding.base};
   grid-column-gap: ${theme.padding.base};
 
   @media ${theme.device.md} {

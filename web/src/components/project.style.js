@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 const Wrapper = styled.article`
   margin-bottom: 50px;
-  overflow: scroll;
 `
 
 const StyledTitle = styled.h2`

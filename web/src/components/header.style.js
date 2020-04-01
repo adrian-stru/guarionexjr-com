@@ -5,10 +5,14 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: ${theme.padding.base};
+  grid-column-gap: ${theme.padding.base};
   margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
+  margin-top: ${props => (props.isInstagram) ? '20px' : '-2px'};
 `
 
-const GridColumn = styled.div``
+const GridColumn = styled.div`
+  position: relative;
+`
 
 const NavItem = styled.a`
   display: block;
@@ -31,10 +35,17 @@ const NotFixed = styled.div`
   }
 `
 
+const ContactWrap = styled.div`
+  p {
+    margin-block-start: 0;
+  }
+`
+
 export {
   NavItem,
   Fixed,
   Grid,
   GridColumn,
-  NotFixed
+  NotFixed,
+  ContactWrap
 }

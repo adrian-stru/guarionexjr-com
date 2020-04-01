@@ -2,8 +2,10 @@ import styled from 'styled-components'
 import {theme} from '../styles'
 
 const ProjectWrapper = styled.article`
-  overflow-y: scroll;
   margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
+  @media ${theme.device.md} {
+    margin-bottom: ${props => (props.mediumMb) ? `${props.mediumMb}px` : null};
+  }
 `
 
 const ProjectTitle = styled.h2`
@@ -24,6 +26,7 @@ const ProjectDescriptionWrap = styled.div`
   @media ${theme.device.md} {
     grid-template-columns: 1fr 1fr;
     column-gap: ${theme.padding.base};
+    grid-column-gap: ${theme.padding.base};
   }
 `
 

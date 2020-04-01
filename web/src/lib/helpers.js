@@ -44,6 +44,8 @@ export function toPlainText (blocks) {
     .join('\n\n')
 }
 
+export const isInstagram = (window !== 'undefined' && /instagram/i.test(navigator.userAgent))
+
 export function useCurrentWidth () {
   let [hasLoaded, setHasLoaded] = useState(false)
   let [width, setWidth] = useState(0)
@@ -87,11 +89,36 @@ export function useCurrentNYTime () {
   return time
 }
 
+export function useCustomTime (hour, minute, speedMultiplier) {
+  const [time, setTime] = useState(new Date(
+    2020, // year
+    3, // month
+    22, // day
+    hour, // hours
+    minute, // minutes
+    0, // seconds
+    0 // ms
+  ))
+
+  console.log(time)
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setTime(new Date(time.getTime() + (1000 * speedMultiplier)))
+      , 1000)
+    return () => {
+      clearInterval(id)
+    }
+  })
+
+  return time
+}
+
 export function useCurrentTime () {
   const [time, setTime] = useState(new Date())
 
   useEffect(() => {
-    const id = setInterval(() => setTime(new Date(), 10000))
+    const id = setInterval(() => setTime(new Date(), 1500))
     return () => {
       clearInterval(id)
     }
@@ -102,11 +129,15 @@ export function useCurrentTime () {
 
 export function getDimensions (el) {
   const {height} = el.getBoundingClientRect()
-  const offsetTop = el.offsetTop - theme.padding.basePx
-  const offsetBottom = el.offsetTop + height + theme.padding.basePx
+  const offsetTop = el.offsetTop
+  const offsetBottom = el.offsetTop + height
   return {
     height,
     offsetTop,
     offsetBottom
   }
+}
+
+export function getQuartersElapsed (time) {
+  return (time.getHours() * 4) + Math.floor(time.getMinutes() / 15)
 }

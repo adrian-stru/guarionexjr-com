@@ -5,16 +5,15 @@ const ImagesWrapper = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: ${theme.padding.base};
   row-gap: ${theme.padding.base};
   grid-row-gap: ${theme.padding.base};
+  column-gap: ${theme.padding.base};
   grid-column-gap: ${theme.padding.base};
-  grid-row-gap: ${theme.padding.base};
-  grid-column-gap: ${theme.padding.base};
-  margin-bottom: ${props => (props.mb) ? `${props.mb}px` : null};
+  margin-bottom: ${theme.padding.base};
 
   @media ${theme.device.md} {
     grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: ${theme.margin.base};
   }
 
   @media ${theme.device.lg} {
@@ -28,11 +27,16 @@ const OverlayCloseButton = styled.a`
   padding: ${theme.padding.base};
   display: block;
   color: white;
-  z-index: 40;
+  z-index: ${props => (props.active) ? 40 : -10};
   opacity: ${props => (props.active) ? 1 : 0};
-  font-size: 18px;
-  @media ${theme.device.sm} {
-    font-size: 28px;
+
+  svg {
+    transform: scale(0.95)
+  }
+  @media ${theme.device.md} {
+    svg {
+      transform: none;
+    }
   }
 `
 
@@ -42,10 +46,10 @@ const OuterImageWrapper = styled.div`
   width: ${props => (props.active) ? '100%' : '50%'};
   :hover {
     width: 100%;
-    height: 100%;
   }
   &:hover ${OverlayCloseButton} {
     opacity: 1;
+    z-index: 40;
   }
 `
 
@@ -71,7 +75,24 @@ const Overlay = styled.div`
   padding: ${theme.padding.base};
   z-index: 20;
   opacity: ${props => (props.active) ? 1 : 0};
-  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  
+  /*
+  animation: hue-rotate 2s linear infinite;
+  @keyframes hue-rotate {
+        from {
+            -webkit-filter: hue-rotate(0);
+            -moz-filter: hue-rotate(0);
+            -ms-filter: hue-rotate(0);
+            filter: hue-rotate(0);
+          }
+          to {
+            -webkit-filter: hue-rotate(360deg);
+            -moz-filter: hue-rotate(360deg);
+            -ms-filter: hue-rotate(360deg);
+            filter: hue-rotate(360deg);
+          }
+      }
+  */
 `
 
 const OverlayCaption = styled.div`
@@ -81,6 +102,9 @@ const OverlayCaption = styled.div`
   font-size: 14px;
   @media ${theme.device.sm} {
     font-size: 18px;
+  }
+  p {
+    margin: 0;
   }
 `
 

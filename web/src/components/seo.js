@@ -5,21 +5,29 @@ import {StaticQuery, graphql} from 'gatsby'
 import {imageUrlFor} from '../lib/image-url'
 import {buildImageObj} from '../lib/helpers'
 
-function SEO ({description, lang, meta, keywords, title, image}) {
+function SEO () {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
-        const metaDescription = description || (data.site && data.site.description) || ''
-        const siteTitle = (data.site && data.site.title) || ''
-        const siteAuthor = (data.site && data.site.author && data.site.author.name) || ''
+        const lang = 'en'
+        const image = null
+        const metaDescription = (data.seo && data.seo.description) || ''
+        const siteTitle = (data.seo && data.seo.title) || ''
+        const siteAuthor = (data.seo && data.seo.author && data.seo.author.name) || ''
         const metaImage = (image && image.asset) ? imageUrlFor(buildImageObj(image)).width(1200).url() : ''
+        const keywords = (data.seo && data.seo.keywords)
+        const title = siteTitle
+
+        console.log(data)
+
+        const meta = {}
 
         return (
           <Helmet
             htmlAttributes={{lang}}
             title={title}
-            titleTemplate={title === siteTitle ? '%s' : `%s | ${siteTitle}`}
+            titleTemplate={title === siteTitle ? '%s' : `${siteTitle}`}
             meta={[
               {
                 name: 'description',
@@ -92,10 +100,11 @@ export default SEO
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
-    site: sanitySiteSettings(_id: {eq: "siteSettings"}) {
-      title
+      seo: sanitySeo(_id: {eq: "drafts.seo"}) {
+      id
       description
       keywords
+      title
     }
   }
 `

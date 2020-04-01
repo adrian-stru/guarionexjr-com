@@ -7,7 +7,6 @@ import {theme} from '../styles'
 const ProjectImages = ({images}) => {
   const ordering = []
   const {width, imageHeight} = useCurrentWidth()
-  const imageBottomMargin = imageHeight / 8
 
   let leftImage = null
   for (const image of images) {
@@ -39,7 +38,8 @@ const ProjectImages = ({images}) => {
       {ordering.map(el => {
         return (
           <S.Row
-            mb={imageBottomMargin}>
+            mbBase={Math.ceil(imageHeight / 4)}
+            mediumMbBase={Math.ceil(imageHeight / 8)}>
             {el}
           </S.Row>
         )

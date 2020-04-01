@@ -4,7 +4,6 @@ import ProjectImages from './projectImages'
 import * as S from '../styles/common'
 import {Context} from '../pages/index'
 import {getDimensions, useCurrentWidth} from '../lib/helpers'
-import {theme} from '../styles'
 
 const Project = ({title, images, slug, description, scrollY}) => {
   const ref = useRef(null)
@@ -13,15 +12,15 @@ const Project = ({title, images, slug, description, scrollY}) => {
   if (dimensions && scrollY >= dimensions.offsetTop && scrollY <= dimensions.offsetBottom && activeSection !== slug) {
     setActiveSection(slug)
   }
-
   const {imageHeight} = useCurrentWidth()
-  const marginBottom = imageHeight / 4
+
 
   return (
     <S.ProjectWrapper
       ref={ref}
       id={`project-${slug}`}
-      mb={marginBottom}>
+      mb={Math.ceil(imageHeight / 2)}
+      mediumMb={Math.ceil(imageHeight / 4)}>
       <ProjectImages
         images={images} />
       <S.ProjectDescriptionWrap>

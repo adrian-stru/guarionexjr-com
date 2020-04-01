@@ -32,6 +32,8 @@ const Footer = ({cv, scrollY}) => {
   return (
     <S.Grid
       ref={ref}
+      mt={Math.ceil(imageHeight / 4)}
+      mediumMt={Math.ceil(imageHeight / 2)}
       mb={Math.ceil(imageHeight / 4)}>
       <S.GridItem />
       <S.GridItem>

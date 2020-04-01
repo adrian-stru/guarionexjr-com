@@ -2,13 +2,15 @@ import React, {useRef, useContext, useState} from 'react'
 import PortableText from './portableText'
 import SelectedWorkImage from './selectedWorkImage'
 import {useCurrentWidth, getDimensions} from '../lib/helpers'
+import OpenIcon from './icons/open.js'
+import CloseIcon from './icons/close.js'
+
 import * as S from './selectedWorks.style'
 import * as C from '../styles/common'
 import {theme} from '../styles'
-
 import {Context} from '../pages/index'
 
-const SelectedWorks = ({images, description, slug, scrollY}) => {
+const SelectedWorks = ({images, rawImages, description, slug, scrollY}) => {
   const ref = useRef(null)
   const {activeSection, setActiveSection} = useContext(Context)
   const {width, imageHeight} = useCurrentWidth()
@@ -22,27 +24,37 @@ const SelectedWorks = ({images, description, slug, scrollY}) => {
     setActiveSection(slug)
   }
 
+  const activeList = []
+  for (let i = 0; i < images.length; i++) {
+    const [active, setActive] = useState(false)
+    activeList.push({active, setActive})
+  }
+
   return (
     <C.ProjectWrapper
       ref={ref}
-      id='selected-works'
-      mb={imageHeight / 4}>
+      id='selected-works'>
       <S.ImagesWrapper
-        mb={imageHeight / 8}>
-        {images.map(image => {
-          const [active, setActive] = useState(false)
+        mb={Math.ceil(imageHeight / 8)}>
+        {images.map((image, index) => {
+          const active = activeList[index].active
+          const setActive = activeList[index].setActive
 
           const clickHandler = e => {
             e.preventDefault()
 
-            // toggle class that expands image and opens overlay
             const op = !active
+            if (active === false) {
+              for (let i = 0; i < images.length; i++) {
+                activeList[i].setActive(false)
+              }
+            }
             setActive(op)
-            console.log('clicked')
           }
 
           return (
             <S.OuterImageWrapper
+              key={index}
               active={active}
               h={Math.ceil(widthPerImage * 1.25)}>
               <S.InnerImageWrapper>
@@ -51,15 +63,14 @@ const SelectedWorks = ({images, description, slug, scrollY}) => {
               </S.InnerImageWrapper>
               <S.Overlay
                 active={active}
-                backgroundColor={image.asset.metadata.palette.dominant.background}
-                onClick={clickHandler}>
-                <S.OverlayCaption>{image.caption}</S.OverlayCaption>
+                backgroundColor={image.asset.metadata.palette.dominant.background} >
+                <S.OverlayCaption><PortableText blocks={rawImages[index].caption} /></S.OverlayCaption>
               </S.Overlay>
               <S.OverlayCloseButton
-                className='no-underline'
+                className='no-underline blink'
                 active={active}
                 onClick={clickHandler}>
-                {(active) ? (<span>&times;</span>) : (<span>&#43;</span>)}
+                {(active) ? (<CloseIcon />) : (<OpenIcon />)}
               </S.OverlayCloseButton>
             </S.OuterImageWrapper>
           )

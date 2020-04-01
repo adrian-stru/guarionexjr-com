@@ -3,19 +3,22 @@ import PortableText from './portableText'
 import {Context} from '../pages/index'
 import gsap from 'gsap'
 import {ScrollToPlugin} from 'gsap/all'
-import {useCurrentWidth, useCurrentNYTime, getDimensions} from '../lib/helpers'
+import {useCurrentWidth, useCurrentNYTime, getDimensions, isInstagram} from '../lib/helpers'
 import * as S from './header.style'
 import {theme} from '../styles'
+import { useState } from 'react'
 
 gsap.registerPlugin(ScrollToPlugin)
 
 const Header = ({about, secondary, contact, projects, scrollY}) => {
-  const ref = useRef(null)
+  const ref = useRef(null) 
   const context = useContext(Context)
   const {activeSection, setActiveSection} = context
   const {imageHeight} = useCurrentWidth()
   const time = useCurrentNYTime()
   const dimensions = (ref.current) ? getDimensions(ref.current) : null
+  const [emailClickMsg, setEmailClickMsg] = useState('')
+
   if (dimensions && scrollY >= dimensions.offsetTop && scrollY <= dimensions.offsetBottom) {
     if (activeSection !== null) {
       setActiveSection(null)
@@ -32,10 +35,8 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
 
     gsap.to(window, {
       duration: 1,
-      scrollTo: {
-        y: anchor,
-        offsetY: theme.padding.basePx
-      }
+      scrollTo: anchor,
+      autoKill: true
     })
   }
 
@@ -51,10 +52,24 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
     })
   }
 
+  const handleEmailClick = (e) => {
+    e.preventDefault()
+    let textField = document.createElement('textarea')
+    textField.innerText = 'guario.photo@gmail.com'
+    document.body.appendChild(textField)
+    textField.select()
+    document.execCommand('copy')
+    textField.remove()
+
+    setEmailClickMsg('Copied')
+    setTimeout(() => setEmailClickMsg(''), 1000)
+  }
+
   return (
     <S.Grid
-      mb={(imageHeight / 4) - 22}
-      ref={ref}>
+      ref={ref}
+      mb={(imageHeight / 8) - theme.margin.basePx}
+      isInstagram={isInstagram}>
       <S.GridColumn>
         <S.Fixed>
           {projects.map((project) => (
@@ -106,7 +121,10 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
               <span className='blink'>&darr;</span> view CV
             </S.NavItem>
           </p>
-          <PortableText blocks={contact} />
+          <S.ContactWrap>
+            <a onClick={handleEmailClick}>Email</a> <span>{emailClickMsg}</span>
+            <PortableText blocks={contact} />
+          </S.ContactWrap>
         </S.NotFixed>
       </S.GridColumn>
     </S.Grid>

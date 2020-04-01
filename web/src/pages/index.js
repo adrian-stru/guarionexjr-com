@@ -52,6 +52,18 @@ query IndexPageQuery {
                   background
                   title
                 }
+                lightMuted {
+                  background
+                  title
+                }
+                lightVibrant {
+                  background
+                  title
+                }
+                vibrant {
+                  background
+                  title
+                }
               }
             }
           }
@@ -67,7 +79,6 @@ query IndexPageQuery {
   }
   selectedWorks: sanitySelectedWorks(_id: {eq: "selectedWorks"}) {
     images {
-      caption
       asset {
         url
         id
@@ -87,6 +98,18 @@ query IndexPageQuery {
               background
               title
             }
+            lightMuted {
+              background
+              title
+            }
+            lightVibrant {
+              background
+              title
+            }
+            vibrant {
+              background
+              title
+            }
           }
         }
       }
@@ -97,6 +120,7 @@ query IndexPageQuery {
       }
     }
     _rawDescription
+    _rawImages
   }
   details: sanityDetails(_id: {eq: "details"}) {
     id
@@ -133,6 +157,7 @@ const IndexPage = props => {
     : []
   const selectedWorks = (data || {}).selectedWorks
   const details = (data || {}).details
+  const seo = (data || {}).seo
   const [activeSection, setActiveSection] = useState(null)
   const [scrollY, setScrollY] = useState(0)
   const context = {activeSection, setActiveSection}
@@ -159,6 +184,7 @@ const IndexPage = props => {
               site={site}
               details={details}
               projects={projects}
+              seo={seo}
               seoTitle={site.title}
               scrollY={scrollY}>
               {projects.map((project) => (
@@ -174,6 +200,7 @@ const IndexPage = props => {
                 scrollY={scrollY}
                 slug='selectedWorks'
                 images={selectedWorks.images}
+                rawImages={selectedWorks._rawImages}
                 description={selectedWorks._rawDescription} />
             </Layout>
           </Context.Provider>
