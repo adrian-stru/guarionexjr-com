@@ -8,7 +8,7 @@ export default {
   fields: [
     {
       name: 'caption',
-      type: 'string',
+      type: 'blinkBlock',
       title: 'Caption',
       options: {
         isHighlighted: true
@@ -28,7 +28,6 @@ export default {
   preview: {
     select: {
       imageUrl: 'asset.url',
-      title: 'caption',
       subtitle: 'highlight'
     }
   }
