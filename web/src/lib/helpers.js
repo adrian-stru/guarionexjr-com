@@ -44,7 +44,7 @@ export function toPlainText (blocks) {
     .join('\n\n')
 }
 
-export const isInstagram = (window !== 'undefined' && /instagram/i.test(navigator.userAgent))
+export const isInstagram = (typeof (window) !== 'undefined' && /instagram/i.test(navigator.userAgent))
 
 export function useCurrentWidth () {
   let [hasLoaded, setHasLoaded] = useState(false)
@@ -99,8 +99,6 @@ export function useCustomTime (hour, minute, speedMultiplier) {
     0, // seconds
     0 // ms
   ))
-
-  console.log(time)
 
   useEffect(() => {
     const id = setInterval(
