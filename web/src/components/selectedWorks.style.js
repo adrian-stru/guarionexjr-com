@@ -74,25 +74,8 @@ const Overlay = styled.div`
   height: 100%;
   padding: ${theme.padding.base};
   z-index: 20;
-  opacity: ${props => (props.active) ? 1 : 0};
-  
-  /*
-  animation: hue-rotate 2s linear infinite;
-  @keyframes hue-rotate {
-        from {
-            -webkit-filter: hue-rotate(0);
-            -moz-filter: hue-rotate(0);
-            -ms-filter: hue-rotate(0);
-            filter: hue-rotate(0);
-          }
-          to {
-            -webkit-filter: hue-rotate(360deg);
-            -moz-filter: hue-rotate(360deg);
-            -ms-filter: hue-rotate(360deg);
-            filter: hue-rotate(360deg);
-          }
-      }
-  */
+  opacity: ${props => (props.active) ? 1 : 0}; 
+  transition: opacity 1s ease-in;
 `
 
 const OverlayCaption = styled.div`

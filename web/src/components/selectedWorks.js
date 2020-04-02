@@ -63,7 +63,7 @@ const SelectedWorks = ({images, rawImages, description, slug, scrollY}) => {
               </S.InnerImageWrapper>
               <S.Overlay
                 active={active}
-                backgroundColor={image.asset.metadata.palette.dominant.background} >
+                backgroundColor={image.asset.metadata.palette.darkVibrant.background} >
                 <S.OverlayCaption><PortableText blocks={rawImages[index].caption} /></S.OverlayCaption>
               </S.Overlay>
               <S.OverlayCloseButton

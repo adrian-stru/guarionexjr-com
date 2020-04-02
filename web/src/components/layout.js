@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Header from './header'
 import SEO from './seo'
 import Footer from './footer'
@@ -12,7 +12,7 @@ const Layout = ({site, seoTitle, projects, scrollY, details, children}) => {
   /*
   Debugging
 
-  const hour = 4 // 0-23
+  const hour = 2 // 0-23
   const minute = 0 // 0-59
   const speedMultiplier = (60 * 1) // > 1
   const time = useCustomTime(hour, minute, speedMultiplier)
@@ -20,8 +20,7 @@ const Layout = ({site, seoTitle, projects, scrollY, details, children}) => {
 
   return (
     <S.StyledLayout
-      className='rave5'
-      /* className={(time.getHours() < 4) ? 'rave5' : null} */
+      className={(time.getHours() < 4) ? 'rave' : null}
       isInstagram={isInstagram}
       time={time} >
       <BaseStyle />

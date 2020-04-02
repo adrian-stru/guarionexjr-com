@@ -5,8 +5,6 @@ import colors from '../lib/background-colors'
 function timeToFontColor (time) {
   const quartersElapsed = (time.getHours() * 4) + Math.floor(time.getMinutes() / 15)
 
-  return '#fff'
-
   if (quartersElapsed < 16) {
     return '#fff'
   }

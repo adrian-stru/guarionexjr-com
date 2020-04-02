@@ -2,48 +2,48 @@ const colors = [
   // 4:00am - 4:15am
   {
     from: 'rgba(0,0,0,1)',
-    to: 'rgba(7,33,52,1)',
+    to: 'rgba(11,39,60,1)',
     angle: '315deg'
   },
   // 4:15am - 4:30am
   {
-    from: 'rgba(7,33,52,1)',
-    to: 'rgba(26,54,82,1)',
+    from: 'rgba(11,39,60,1)',
+    to: 'rgba(9,59,93,1)',
     angle: '315deg'
   },
   // 4:30 - 4:45am
   {
-    from: 'rgba(26,54,82,1)',
-    to: 'rgba(45,63,97,1)',
+    from: 'rgba(9,59,93,1)',
+    to: 'rgba(92,80,119,1)',
     angle: '315deg'
   },
   // 4:45 - 5:00am
   {
-    from: 'rgba(45,63,97,1)',
-    to: 'rgba(84,80,111,1)',
+    from: 'rgba(92,80,119,1)',
+    to: 'rgba(137,111,125,1)',
     angle: '315deg'
   },
   // 5:00am - 5:15am
   {
-    from: 'rgba(84,80,111,1)',
-    to: 'rgba(132,103,128,1)',
+    from: 'rgba(137,111,125,1)',
+    to: 'rgba(201,158,151,1)',
     angle: '315deg'
   },
   // 5:15am - 5:30am
   {
-    from: 'rgba(132,103,128,1)',
-    to: 'rgba(161,130,143,1)',
+    from: 'rgba(201,158,151,1)',
+    to: 'rgba(221,149,141,1)',
     angle: '315deg'
   },
   // 5:30am - 5:45am
   {
-    from: 'rgba(161,130,143,1)',
-    to: 'rgba(201,158,151,1)',
+    from: 'rgba(221,149,141,1)',
+    to: 'rgba(210,188,164,1)',
     angle: '315deg'
   },
   // 5:45 - 6:00am
   {
-    from: 'rgba(201,158,151,1)',
+    from: 'rgba(210,188,164,1)',
     to: 'rgba(146,165,177,1)',
     angle: '315deg'
   },
@@ -56,12 +56,12 @@ const colors = [
   // 6:15am - 6:30am
   {
     from: 'rgba(178,190,196,1)',
-    to: 'rgba(202,206,209,1)',
+    to: 'rgba(204,211,216,1)',
     angle: '315deg'
   },
   // 6:30am - 6:45am
   {
-    from: 'rgba(202,206,209,1)',
+    from: 'rgba(204,211,216,1)',
     to: 'rgba(209,209,209,1)',
     angle: '315deg'
   },
