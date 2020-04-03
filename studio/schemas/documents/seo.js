@@ -24,6 +24,11 @@ export default {
       options: {
         layout: 'tags'
       }
+    },
+    {
+      name: 'image',
+      type: 'seoImage',
+      title: 'Image'
     }
   ]
 }

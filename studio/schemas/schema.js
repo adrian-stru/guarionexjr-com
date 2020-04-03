@@ -14,6 +14,7 @@ import details from './documents/details'
 // Object types
 import projectImage from './objects/projectImage'
 import selectedWorkImage from './objects/selectedWorkImage'
+import seoImage from './objects/seoImage'
 import blinkBlock from './objects/blinkBlock'
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -30,6 +31,7 @@ export default createSchema({
     selectedWorks,
     seo,
     details,
+    seoImage,
     projectImage,
     selectedWorkImage,
     blinkBlock
