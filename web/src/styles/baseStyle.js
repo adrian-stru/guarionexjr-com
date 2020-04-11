@@ -1,6 +1,5 @@
 import {createGlobalStyle} from 'styled-components'
 import theme from './theme'
-import config from './config'
 
 const BaseStyle = createGlobalStyle`
     html {
