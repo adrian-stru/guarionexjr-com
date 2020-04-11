@@ -5,28 +5,20 @@ import {StaticQuery, graphql} from 'gatsby'
 import {imageUrlFor} from '../lib/image-url'
 import {buildImageObj} from '../lib/helpers'
 
-function SEO () {
+function SEO ({meta, lang, description, keywords, title, image}) {
   return (
     <StaticQuery
       query={detailsQuery}
       render={data => {
-        const lang = 'en'
-        const image = null
-        const metaDescription = (data.seo && data.seo.description) || ''
-        const siteTitle = (data.seo && data.seo.title) || ''
-        const siteAuthor = (data.seo && data.seo.author && data.seo.author.name) || ''
-        const metaImage = (image && image.asset) ? imageUrlFor(buildImageObj(image)).width(1200).url() : ''
-        const keywords = (data.seo && data.seo.keywords)
-        const title = siteTitle
-
-        console.log(data)
-
-        const meta = {}
+        const metaDescription = (data.seo && data.seo.description) || description || ''
+        const siteTitle = (data.seo && data.seo.title) || title || ''
+        const metaImage = (data.seo && data.seo.image && data.seo.image.asset) ? imageUrlFor(buildImageObj(data.seo.image)).width(1200).url() : null
+        const keywords = data.seo && data.seo.keywords
 
         return (
           <Helmet
             htmlAttributes={{lang}}
-            title={title}
+            title={siteTitle}
             titleTemplate={title === siteTitle ? '%s' : `${siteTitle}`}
             meta={[
               {
@@ -35,7 +27,7 @@ function SEO () {
               },
               {
                 property: 'og:title',
-                content: title
+                content: siteTitle
               },
               {
                 property: 'og:description',
@@ -55,11 +47,11 @@ function SEO () {
               },
               {
                 name: 'twitter:creator',
-                content: siteAuthor
+                content: '@Guari1x'
               },
               {
                 name: 'twitter:title',
-                content: title
+                content: siteTitle
               },
               {
                 name: 'twitter:description',
@@ -100,11 +92,17 @@ export default SEO
 
 const detailsQuery = graphql`
   query DefaultSEOQuery {
-      seo: sanitySeo(_id: {eq: "drafts.seo"}) {
+      seo: sanitySeo(_id: {eq: "seo"}) {
       id
       description
       keywords
       title
+      image {
+        asset {
+          _id
+          id
+        }
+      }
     }
   }
 `

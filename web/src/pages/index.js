@@ -8,6 +8,7 @@ import {
 import {useScrollPosition} from '../lib/useScrollPosition'
 import GraphQLErrorList from '../components/graphql-error-list'
 import Layout from '../components/layout'
+import SEO from '../components/seo'
 import Project from '../components/project'
 import SelectedWorks from '../components/selectedWorks'
 
@@ -129,11 +130,6 @@ query IndexPageQuery {
     _rawCv
     _rawSecondary
   }
-  seo: sanitySeo(_id: {eq: "seo"}) {
-    title
-    description
-    keywords
-  }
 }
 `
 
@@ -157,7 +153,6 @@ const IndexPage = props => {
     : []
   const selectedWorks = (data || {}).selectedWorks
   const details = (data || {}).details
-  const seo = (data || {}).seo
   const [activeSection, setActiveSection] = useState(null)
   const [scrollY, setScrollY] = useState(0)
   const context = {activeSection, setActiveSection}
@@ -170,7 +165,7 @@ const IndexPage = props => {
 
   useScrollPosition(({prevPos, currPos}) => {
     setScrollY(currPos.y)
-  }, undefined, undefined, true, 125)
+  }, undefined, undefined, true, 250)
 
   const isSSR = typeof window === 'undefined'
 
@@ -178,14 +173,13 @@ const IndexPage = props => {
     <>
       {!isSSR && (
         <React.Suspense fallback={<div />}>
+          <SEO />
           <Context.Provider
             value={context}>
             <Layout
               site={site}
               details={details}
               projects={projects}
-              seo={seo}
-              seoTitle={site.title}
               scrollY={scrollY}>
               {projects.map((project) => (
                 <Project
