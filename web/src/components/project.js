@@ -9,7 +9,7 @@ const Project = ({title, images, slug, description, scrollY}) => {
   const ref = useRef(null)
   const {activeSection, setActiveSection} = useContext(Context)
   const dimensions = (ref.current) ? getDimensions(ref.current) : null
-  if (dimensions && scrollY >= dimensions.offsetTop && scrollY <= dimensions.offsetBottom && activeSection !== slug) {
+  if (dimensions && scrollY >= dimensions.offsetTop && scrollY < dimensions.offsetBottom && activeSection !== slug) {
     setActiveSection(slug)
   }
   const {imageHeight} = useCurrentWidth()
