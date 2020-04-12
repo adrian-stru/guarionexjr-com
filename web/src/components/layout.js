@@ -1,35 +1,32 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Header from './header'
 import Footer from './footer'
 import {useCurrentNYTime, isInstagram, useCustomTime} from '../lib/helpers'
+import {RAVE_START_MINUTES, RAVE_END_MINUTES} from '../lib/background-colors'
 import {BaseStyle} from '../styles'
 import * as S from './layout.style'
 
+
+
 const Layout = ({projects, scrollY, details, children}) => {
+  // Debugging
 
-  const time = useCurrentNYTime()
-  const quartersElapsed = (time.getHours() * 4) + Math.floor(time.getMinutes() / 15)
-  const minutesMod15 = time.getMinutes() % 15
-  const seconds = (minutesMod15 * 60) + time.getSeconds()
-  const fromCoverage = (seconds >= 450) ? 100 : ((seconds / 450) * 100).toFixed(2)
-  const toCoverage = (seconds <= 450) ? 0 : (((seconds - 450) / 450) * 100).toFixed(2)
-
-  /*
-  Debugging
-
-  const hour = 2 // 0-23
-  const minute = 0 // 0-59
-  const speedMultiplier = (60 * 1) // > 1
+  const hour = 18 // 0-23
+  const minute = 45 // 0-59
+  const speedMultiplier = (1) // > 1
   const time = useCustomTime(hour, minute, speedMultiplier)
-  */
+
+
+  // const time = useCurrentNYTime()
+
+  const nowInMinutes = time.getHours() * 60 + time.getMinutes()
 
   return (
     <S.StyledLayout
-      className={(time.getHours() < 4) ? 'rave' : null}
+      className={(nowInMinutes >= RAVE_START_MINUTES && nowInMinutes < RAVE_END_MINUTES) ? 'rave' : null}
       isInstagram={isInstagram}
-      quartersElapsed={quartersElapsed}
-      fromCoverage={fromCoverage}
-      toCoverage={toCoverage} >
+      time={time} >
+      {time.toLocaleTimeString()}
       <BaseStyle />
       <Header
         scrollY={scrollY}

@@ -1,61 +1,173 @@
-const colors = [
+const MINUTE_IN_HOUR = 60
+const QUARTERS_IN_HOUR = 4
+
+export const RAVE_START_MINUTES = 1 * MINUTE_IN_HOUR + 2 // 1:02am
+export const RAVE_END_MINUTES = 3 * MINUTE_IN_HOUR + 50 // 3:50am
+export const BUSINESS_HOURS_START_MINUTES = 6 * MINUTE_IN_HOUR + 15 // 6:15am
+export const BUSINESS_HOURS_END_MINUTES = 18 * MINUTE_IN_HOUR // 6:00pm
+export const NIGHT_HOURS_START_MINUTES = 20 * MINUTE_IN_HOUR // 8:00pm
+export const NIGHT_HOURS_END_MINUTES = 1 * MINUTE_IN_HOUR + 2 // 1:02am
+export const SUNRISE_START_QUARTERS = 4 * QUARTERS_IN_HOUR + 2 // 4:30am
+export const SUNRISE_END_QUARTERS = 6 * QUARTERS_IN_HOUR + 1 // 6:15am
+export const SUNSET_START_QUARTERS = 18 * QUARTERS_IN_HOUR + 1 // 6:15pm
+export const SUNSET_END_QUARTERS = 20 * QUARTERS_IN_HOUR // 8:00pm
+export const BUSINESS_HOURS_START_QUARTERS = SUNRISE_END_QUARTERS // 6:15am
+export const BUSINESS_HOURS_END_QUARTERS = SUNSET_START_QUARTERS // 8:00pm
+
+export const colors = [
+  // 12:00am - 12:15am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 12:15am - 12:30am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 12:30am - 12:45am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 12:45am - 1:00am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 1:00am - 1:15am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 1:15am - 1:30am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 1:30am - 1:45am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 1:45am - 2:00am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 2:00am - 2:15am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 2:15am - 2:30am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 2:30am - 2:45am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 2:45am - 3:00am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 3:00am - 3:15am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 3:15am - 3:30am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 3:30am - 3:45am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
+  // 3:45am - 4:00am
+  {
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
+    angle: '90deg'
+  },
   // 4:00am - 4:15am
   {
     from: 'rgba(0,0,0,1)',
-    to: 'rgba(11,39,60,1)',
+    to: 'rgba(0,0,0,1)',
     angle: '315deg'
   },
   // 4:15am - 4:30am
   {
-    from: 'rgba(11,39,60,1)',
-    to: 'rgba(9,59,93,1)',
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(0,0,0,1)',
     angle: '315deg'
   },
   // 4:30 - 4:45am
   {
-    from: 'rgba(9,59,93,1)',
-    to: 'rgba(92,80,119,1)',
+    from: 'rgba(0,0,0,1)',
+    to: 'rgba(7,33,52,1)',
     angle: '315deg'
   },
   // 4:45 - 5:00am
   {
-    from: 'rgba(92,80,119,1)',
-    to: 'rgba(137,111,125,1)',
+    from: 'rgba(7,33,52,1)',
+    to: 'rgba(45,63,97,1)',
     angle: '315deg'
   },
   // 5:00am - 5:15am
   {
-    from: 'rgba(137,111,125,1)',
-    to: 'rgba(201,158,151,1)',
+    from: 'rgba(45,63,97,1)',
+    to: 'rgba(222,127,116,1)',
     angle: '315deg'
   },
   // 5:15am - 5:30am
   {
-    from: 'rgba(201,158,151,1)',
-    to: 'rgba(221,149,141,1)',
+    from: 'rgba(222,127,116,1)',
+    to: 'rgba(138,181,208,1)',
     angle: '315deg'
   },
   // 5:30am - 5:45am
   {
-    from: 'rgba(221,149,141,1)',
-    to: 'rgba(210,188,164,1)',
+    from: 'rgba(138,181,208,1)',
+    to: 'rgba(184,209,224,1)',
     angle: '315deg'
   },
   // 5:45 - 6:00am
   {
-    from: 'rgba(210,188,164,1)',
-    to: 'rgba(146,165,177,1)',
+    from: 'rgba(184,209,224,1)',
+    to: 'rgba(203,221,230,1)',
     angle: '315deg'
   },
   // 6:00am - 6:15am
   {
-    from: 'rgba(146,165,177,1)',
-    to: 'rgba(178,190,196,1)',
+    from: 'rgba(203,221,230,1)',
+    to: 'rgba(250,250,250,1)',
     angle: '315deg'
   },
   // 6:15am - 6:30am
   {
-    from: 'rgba(178,190,196,1)',
+    from: 'rgba(250,250,250,1)',
     to: 'rgba(204,211,216,1)',
     angle: '315deg'
   },
@@ -338,54 +450,54 @@ const colors = [
   // 6:00pm - 6:15pm
   {
     from: 'rgba(209,209,209,1)',
-    to: 'rgba(207,207,207,1)',
+    to: 'rgba(250,250,250,1)',
     angle: '90deg'
   },
   // 6:15pm - 6:30pm
   {
-    from: 'rgba(207,207,207,1)',
+    from: 'rgba(250,250,250,1)',
     to: 'rgba(189,206,210,1)',
     angle: '90deg'
   },
   // 6:30pm - 6:45pm
   {
     from: 'rgba(189,206,210,1)',
-    to: 'rgba(242,213,180,1)',
+    to: 'rgba(251,191,135,1)',
     angle: '225deg'
   },
   // 6:45pm - 7:00pm
   {
-    from: 'rgba(242,213,180,1)',
-    to: 'rgba(251,191,135,1)',
+    from: 'rgba(251,191,135,1)',
+    to: 'rgba(228,124,114,1)',
     angle: '225deg'
   },
   // 7:00pm - 7:15pm
   {
-    from: 'rgba(251,191,135,1)',
-    to: 'rgba(214,155,149,1)',
+    from: 'rgba(228,124,114,1)',
+    to: 'rgba(50,135,194,1)',
     angle: '225deg'
   },
   // 7:15pm - 7:30pm
   {
-    from: 'rgba(214,155,149,1)',
-    to: 'rgba(148,145,170,1)',
+    from: 'rgba(50,135,194,1)',
+    to: 'rgba(0,97,149,1)',
     angle: '225deg'
   },
   // 7:30pm - 7:45pm
   {
-    from: 'rgba(148,145,170,1)',
-    to: 'rgba(111,144,166,1)',
+    from: 'rgba(0,97,149,1)',
+    to: 'rgba(0,52,87,1)',
     angle: '225deg'
   },
   // 7:45pm - 8:00pm
   {
-    from: 'rgba(111,144,166,1)',
-    to: 'rgba(66,121,154,1)',
+    from: 'rgba(0,52,87,1)',
+    to: 'rgba(0,0,0,1)',
     angle: '225deg'
   },
   // 8:00pm - 8:15pm
   {
-    from: 'rgba(66,121,154,1)',
+    from: 'rgba(0,0,0,1)',
     to: 'rgba(0,97,149,1)',
     angle: '225deg'
   },
