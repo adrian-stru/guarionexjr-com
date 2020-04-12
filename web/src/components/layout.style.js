@@ -54,7 +54,7 @@ const StyledLayout = styled.div`
   height: 100%;
   background: ${props => (props.time) ? getBackgroundColor(props.time) : null};
   background: ${props => (props.time) ? getBackgroundGradient(props.time) : 'red'};
-  color: ${props => (props.time) ? '#fff' : null};
+  color: ${props => (props.time) ? getFontColor(props.time) : null};
   padding: ${theme.padding.base};
   padding-top: ${props => (props.isInstagram) ? '28px' : null};
 `

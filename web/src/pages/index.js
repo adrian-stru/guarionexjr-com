@@ -11,6 +11,7 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Project from '../components/project'
 import SelectedWorks from '../components/selectedWorks'
+import WebFont from 'webfontloader'
 
 export const query = graphql`
 query IndexPageQuery {
@@ -144,6 +145,7 @@ const IndexPage = props => {
       </Layout>
     )
   }
+  const [fontsloaded, setFontsLoaded] = useState(false)
 
   const site = (data || {}).site
   const projects = (data || {}).projects
@@ -161,6 +163,18 @@ const IndexPage = props => {
     throw new Error(
       'Missing "Site settings". Open the studio and add content.'
     )
+  }
+
+  if (!fontsloaded) {
+    WebFont.load({
+      custom: {
+        families: ['Relative-Faux, Relative-Book-Italic'],
+        urls: ['fonts/fonts.css']
+      },
+      fontactive: (familyName, fvd) => {
+        setFontsLoaded(true)
+      }
+    })
   }
 
   useScrollPosition(({prevPos, currPos}) => {

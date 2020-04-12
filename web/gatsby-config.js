@@ -36,7 +36,8 @@ module.exports = {
       options: {
         displayName: false
       }
-    },
+    }
+    /*
     {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
@@ -46,5 +47,6 @@ module.exports = {
         }
       }
     }
+    */
   ]
 }

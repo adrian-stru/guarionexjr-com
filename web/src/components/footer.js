@@ -50,10 +50,16 @@ const Footer = ({cv, scrollY}) => {
         </S.BackToTopWrapper>
         <div>
           <div>
+            <span>Website designed by <a href='https://miguelgaydo.sh' target='_blank'>Miguel Gaydosh</a></span>
+          </div>
+          <div>
+            <span>Developed by <a href='https://www.adrianstru.com'>Adrian Struszczyk</a></span>
+          </div>
+          <div>
             <span className='blink'>&copy;</span> all works Guarionex Rodriguez<span className='blink'>,</span> Jr<span className='blink'>.</span>
           </div>
           <div>
-            <span className='blink'>*</span>  all tweets are my own and should be taken with a beer and a shot <span className='blink'>:)</span>
+            <span className='blink'>*</span>  All tweets are for the gang and the crew<span className='blink'>.</span> A privilege<span className='blink'>.</span> Using it against me is frowned upon <span className='blink'>:(</span>
           </div>
         </div>
       </S.GridItem>

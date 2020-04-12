@@ -6,18 +6,17 @@ import {RAVE_START_MINUTES, RAVE_END_MINUTES} from '../lib/background-colors'
 import {BaseStyle} from '../styles'
 import * as S from './layout.style'
 
-
-
 const Layout = ({projects, scrollY, details, children}) => {
+  /*
   // Debugging
 
   const hour = 18 // 0-23
   const minute = 45 // 0-59
   const speedMultiplier = (1) // > 1
   const time = useCustomTime(hour, minute, speedMultiplier)
+  */
 
-
-  // const time = useCurrentNYTime()
+  const time = useCurrentNYTime()
 
   const nowInMinutes = time.getHours() * 60 + time.getMinutes()
 
@@ -26,7 +25,6 @@ const Layout = ({projects, scrollY, details, children}) => {
       className={(nowInMinutes >= RAVE_START_MINUTES && nowInMinutes < RAVE_END_MINUTES) ? 'rave' : null}
       isInstagram={isInstagram}
       time={time} >
-      {time.toLocaleTimeString()}
       <BaseStyle />
       <Header
         scrollY={scrollY}
