@@ -186,7 +186,7 @@ const IndexPage = props => {
 
   return (
     <>
-      {!isSSR && (
+      {!isSSR && fontsloaded && (
         <React.Suspense fallback={<div />}>
           <SEO />
           <Context.Provider
