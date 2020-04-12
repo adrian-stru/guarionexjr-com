@@ -2,6 +2,29 @@ import {createGlobalStyle} from 'styled-components'
 import theme from './theme'
 
 const BaseStyle = createGlobalStyle`
+
+    @font-face {
+        font-family: 'Relative-Faux';
+        src: url('fonts/relative-faux.eot');
+        src: url('fonts/relative-faux.eot?#iefix') format('embedded-opentype'),
+            url('fonts/relative-faux.woff2') format('woff2'),
+            url('fonts/relative-faux.woff') format('woff'),
+            url('fonts/relative-faux.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'Relative-Book-Italic';
+        src: url('fonts/relative-book-italic.eot');
+        src: url('fonts/relative-book-italic?#iefix') format('embedded-opentype'),
+            url('fonts/relative-book-italic.woff2') format('woff2'),
+            url('fonts/relative-book-italic.woff') format('woff'),
+            url('fonts/relative-book-italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
     html {
         box-sizing: border-box;
     }
