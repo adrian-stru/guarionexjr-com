@@ -11,7 +11,6 @@ import Layout from '../components/layout'
 import SEO from '../components/seo'
 import Project from '../components/project'
 import SelectedWorks from '../components/selectedWorks'
-import WebFont from 'webfontloader'
 
 export const query = graphql`
 query IndexPageQuery {
@@ -165,8 +164,6 @@ const IndexPage = props => {
     )
   }
 
-  
-
   useScrollPosition(({prevPos, currPos}) => {
     setScrollY(currPos.y)
   }, undefined, undefined, true, 250)
@@ -174,6 +171,8 @@ const IndexPage = props => {
   const isSSR = typeof window === 'undefined'
 
   if (!fontsloaded && !isSSR) {
+    const WebFont = require('webfontloader')
+
     WebFont.load({
       custom: {
         families: ['Relative-Faux, Relative-Book-Italic'],
