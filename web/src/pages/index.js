@@ -165,7 +165,15 @@ const IndexPage = props => {
     )
   }
 
-  if (!fontsloaded) {
+  
+
+  useScrollPosition(({prevPos, currPos}) => {
+    setScrollY(currPos.y)
+  }, undefined, undefined, true, 250)
+
+  const isSSR = typeof window === 'undefined'
+
+  if (!fontsloaded && !isSSR) {
     WebFont.load({
       custom: {
         families: ['Relative-Faux, Relative-Book-Italic'],
@@ -176,12 +184,6 @@ const IndexPage = props => {
       }
     })
   }
-
-  useScrollPosition(({prevPos, currPos}) => {
-    setScrollY(currPos.y)
-  }, undefined, undefined, true, 250)
-
-  const isSSR = typeof window === 'undefined'
 
   return (
     <>
