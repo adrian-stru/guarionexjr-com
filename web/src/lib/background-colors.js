@@ -451,13 +451,13 @@ export const colors = [
   {
     from: 'rgba(209,209,209,1)',
     to: 'rgba(250,250,250,1)',
-    angle: '90deg'
+    angle: '225deg'
   },
   // 6:15pm - 6:30pm
   {
     from: 'rgba(250,250,250,1)',
     to: 'rgba(189,206,210,1)',
-    angle: '90deg'
+    angle: '225deg'
   },
   // 6:30pm - 6:45pm
   {

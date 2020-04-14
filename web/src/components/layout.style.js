@@ -29,7 +29,7 @@ function getBackgroundColor (time) {
 function getBackgroundGradient (time) {
   const quartersElapsed = (time.getHours() * 4) + Math.floor(time.getMinutes() / 15)
 
-  if (quartersElapsed > SUNSET_END_QUARTERS || quartersElapsed < SUNRISE_START_QUARTERS) {
+  if (quartersElapsed >= SUNSET_END_QUARTERS || quartersElapsed <= SUNRISE_START_QUARTERS) {
     return '#000'
   }
 
