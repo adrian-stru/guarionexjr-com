@@ -40,6 +40,19 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
     })
   }
 
+  const handleCvClick = (e) => {
+    e.preventDefault()
+
+    gsap.to(window, {
+      duration: 1,
+      scrollTo: {
+        y: '#cv',
+        offsetY: 50
+      },
+      autoKill: true
+    })
+  }
+
   const handleTitleClick = (e) => {
     e.preventDefault()
 
@@ -117,7 +130,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
           <p>
             <S.NavItem
               className='no-underline'
-              onClick={(e) => handleNavItemClick('cv', e)}>
+              onClick={(e) => handleCvClick(e)}>
               <span className='blink'>&darr;</span> view CV
             </S.NavItem>
           </p>

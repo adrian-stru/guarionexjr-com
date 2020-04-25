@@ -75,7 +75,7 @@ const Overlay = styled.div`
   padding: ${theme.padding.base};
   z-index: 20;
   opacity: ${props => (props.active) ? 1 : 0}; 
-  transition: all .25s ease-in;
+  transition: ${props => (props.active) ? 'all .25s ease-in' : null};
 `
 
 const OverlayCaption = styled.div`
