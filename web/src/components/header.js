@@ -19,7 +19,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
   const dimensions = (ref.current) ? getDimensions(ref.current) : null
   const [emailClickMsg, setEmailClickMsg] = useState('')
 
-  if (dimensions && scrollY >= dimensions.offsetTop && scrollY < dimensions.offsetBottom) {
+  if (dimensions && scrollY >= 0 && scrollY <= dimensions.offsetBottom) {
     if (activeSection !== null) {
       setActiveSection(null)
     }
