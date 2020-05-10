@@ -98,7 +98,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
             className={(activeSection === 'selectedWorks') ? 'blink no-underline italic' : 'no-underline italic'}
             href='#'
             onClick={(e) => handleNavItemClick('selected-works', e)}>
-            Select Works
+            Selected Works
           </S.NavItem>
         </S.Fixed>
         <S.NotFixed
