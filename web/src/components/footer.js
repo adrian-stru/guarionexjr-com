@@ -53,9 +53,6 @@ const Footer = ({cv, scrollY}) => {
             <span>Website designed by <a href='https://miguelgaydo.sh' target='_blank'>Miguel Gaydosh</a></span>
           </div>
           <div>
-            <span>Developed by <a href='https://www.adrianstru.com'>Adrian Struszczyk</a></span>
-          </div>
-          <div>
             <span className='blink'>&copy;</span> all works Guarionex Rodriguez<span className='blink'>,</span> Jr<span className='blink'>.</span>
           </div>
           <div>
