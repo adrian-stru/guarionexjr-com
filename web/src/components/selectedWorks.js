@@ -2,8 +2,6 @@ import React, {useRef, useContext, useState} from 'react'
 import PortableText from './portableText'
 import SelectedWorkImage from './selectedWorkImage'
 import {useCurrentWidth, getDimensions} from '../lib/helpers'
-import OpenIcon from './icons/open.js'
-import CloseIcon from './icons/close.js'
 
 import * as S from './selectedWorks.style'
 import * as C from '../styles/common'
@@ -70,7 +68,8 @@ const SelectedWorks = ({images, rawImages, description, slug, scrollY}) => {
                 className='no-underline blink'
                 active={active}
                 onClick={clickHandler}>
-                {(active) ? (<CloseIcon />) : (<OpenIcon />)}
+                {(active ? <div>&#x2715;</div> : <div>&#x2026;</div>)}
+
               </S.OverlayCloseButton>
             </S.OuterImageWrapper>
           )

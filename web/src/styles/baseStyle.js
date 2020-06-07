@@ -19,7 +19,7 @@ const BaseStyle = createGlobalStyle`
         width: 100%;
         height: 100%;
         max-width: 100%;
-        font-family: 'Relative-Faux', 'helvetica', 'sans-serif';
+        font-family: 'ArtisanSelectricRegular', 'Relative-Faux', 'helvetica', 'sans-serif';
         font-size: 14px;
         line-height: 18px;
         @media ${theme.device.sm} {
@@ -68,7 +68,7 @@ const BaseStyle = createGlobalStyle`
     }
 
     .italic {
-        font-family: 'Relative-Book-Italic'
+        font-style: italic;
     }
 
     .blink {

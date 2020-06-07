@@ -12,7 +12,7 @@ const theme = {
     basePx: 11
   },
   fonts: {
-    sans: "'Relative-Faux', 'Lora', sans-serif",
+    sans: "'ArtisanSelectricRegular', 'Relative-Faux', 'Lora', sans-serif",
     serif: { },
     mono: { }
   },

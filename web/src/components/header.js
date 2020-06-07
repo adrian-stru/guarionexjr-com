@@ -19,7 +19,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
   const dimensions = (ref.current) ? getDimensions(ref.current) : null
   const [emailClickMsg, setEmailClickMsg] = useState('')
 
-  if (dimensions && scrollY >= 0 && scrollY <= dimensions.offsetBottom) {
+  if (dimensions && scrollY >= 0 && scrollY < dimensions.offsetBottom) {
     if (activeSection !== null) {
       setActiveSection(null)
     }
@@ -122,7 +122,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
             {time.getMinutes().toString().padStart(2, 0)}
             <span className='blink'>:</span>
             {time.getSeconds().toString().padStart(2, 0)}
-            {(time.getHours() >= 12) ? 'pm' : 'am'} EST
+            {(time.getHours() >= 12) ? 'PM' : 'AM'}
             <br />
             Brooklyn<span className='blink'>,</span> New York
           </div>
