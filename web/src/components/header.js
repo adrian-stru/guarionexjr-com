@@ -87,7 +87,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
         <S.Fixed>
           {projects.map((project) => (
             <S.NavItem
-              className={(activeSection === project.slug.current) ? 'blink no-underline italic' : 'no-underline italic'}
+              className={(activeSection === project.slug.current) ? 'blink no-underline' : 'no-underline'}
               href='#'
               key={project.id}
               onClick={(e) => handleNavItemClick(`project-${project.slug.current}`, e)}>
@@ -95,7 +95,7 @@ const Header = ({about, secondary, contact, projects, scrollY}) => {
             </S.NavItem>
           ))}
           <S.NavItem
-            className={(activeSection === 'selectedWorks') ? 'blink no-underline italic' : 'no-underline italic'}
+            className={(activeSection === 'selectedWorks') ? 'blink no-underline' : 'no-underline'}
             href='#'
             onClick={(e) => handleNavItemClick('selected-works', e)}>
             Selected Works
