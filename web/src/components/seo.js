@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import {Helmet} from 'react-helmet'
 import {StaticQuery, graphql} from 'gatsby'
 import {imageUrlFor} from '../lib/image-url'
 import {buildImageObj} from '../lib/helpers'
@@ -16,58 +16,64 @@ function SEO ({meta, lang, description, keywords, title, image}) {
         const keywords = data.seo && data.seo.keywords
 
         return (
-          <Helmet
-            htmlAttributes={{lang}}
-            title={siteTitle}
-            titleTemplate={title === siteTitle ? '%s' : `${siteTitle}`}
-            meta={[
-              {
-                name: 'description',
-                content: metaDescription
-              },
-              {
-                property: 'og:title',
-                content: siteTitle
-              },
-              {
-                property: 'og:description',
-                content: metaDescription
-              },
-              {
-                property: 'og:type',
-                content: 'website'
-              },
-              {
-                property: 'og:image',
-                content: metaImage
-              },
-              {
-                name: 'twitter:card',
-                content: 'summary'
-              },
-              {
-                name: 'twitter:creator',
-                content: '@Guari1x'
-              },
-              {
-                name: 'twitter:title',
-                content: siteTitle
-              },
-              {
-                name: 'twitter:description',
-                content: metaDescription
-              }
-            ]
-              .concat(
-                keywords && keywords.length > 0
-                  ? {
-                    name: 'keywords',
-                    content: keywords.join(', ')
-                  }
-                  : []
-              )
-              .concat(meta)}
-          />
+          <React.Fragment>
+            <Helmet
+              htmlAttributes={{lang}}
+              title={siteTitle}
+              titleTemplate={title === siteTitle ? '%s' : `${siteTitle}`}
+              meta={[
+                {
+                  name: 'description',
+                  content: metaDescription
+                },
+                {
+                  property: 'og:title',
+                  content: siteTitle
+                },
+                {
+                  property: 'og:description',
+                  content: metaDescription
+                },
+                {
+                  property: 'og:type',
+                  content: 'website'
+                },
+                {
+                  propert: 'og:url',
+                  content: '/url'
+                },
+                {
+                  property: 'og:image',
+                  content: metaImage
+                },
+                {
+                  name: 'twitter:card',
+                  content: 'summary_large_image'
+                },
+                {
+                  name: 'twitter:creator',
+                  content: '@Guari1x'
+                },
+                {
+                  name: 'twitter:title',
+                  content: siteTitle
+                },
+                {
+                  name: 'twitter:description',
+                  content: metaDescription
+                }
+              ]
+                .concat(
+                  keywords && keywords.length > 0
+                    ? {
+                      name: 'keywords',
+                      content: keywords.join(', ')
+                    }
+                    : []
+                )
+                .concat(meta)}
+            />
+          </React.Fragment>
         )
       }}
     />
@@ -85,7 +91,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 }
 
 export default SEO
