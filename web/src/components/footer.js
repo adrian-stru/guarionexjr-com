@@ -50,7 +50,7 @@ const Footer = ({cv, scrollY}) => {
         </S.BackToTopWrapper>
         <div>
           <div>
-            <span>Website designed by <a href='https://miguelgaydo.sh' target='_blank'>Giguel Maybach</a></span><span className='blink'>.</span>
+            <span>Website designed by <a href='https://miguelgajdos.com' target='_blank'>Giguel Maybach</a></span><span className='blink'>.</span>
           </div>
           <div>
             <span>Type set in Artisan Selectric by <a href='https://www.kylaarsadjaja.com/' target='_blank'>Kyla Arsadjaja</a></span><span className='blink'>.</span>
