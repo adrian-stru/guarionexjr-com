@@ -2,7 +2,6 @@ import React from 'react'
 import ProjectImage from './projectImage'
 import {useCurrentWidth} from '../lib/helpers'
 import * as S from './projectImages.style'
-import {theme} from '../styles'
 
 const ProjectImages = ({images}) => {
   const ordering = []
